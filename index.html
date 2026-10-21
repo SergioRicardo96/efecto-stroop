@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>No leas, ¡observa!: el efecto Stroop</title>
+  <meta name="description" content="Descubre cómo la atención, la percepción y la lectura automática ponen a prueba nuestro cerebro. Proyecto académico de la Facultad de Psicología, UNICACH.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Ir al contenido</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="Inicio: No leas, observa">
+        <span class="mark"><span data-ink="azul">St</span><span data-ink="rojo">ro</span><span data-ink="verde">op</span></span>
+        <small>No leas, ¡observa!</small>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav" aria-label="Secciones del sitio">
+        <ul>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="projects.html">Proyectos</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="texts.html">Textos</a></li>
+          <li><a href="places.html">Sitios de interés</a></li>
+          <li><a href="animation.html">Animación</a></li>
+          <li><a href="space-design.html">Diseño de espacio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow">El efecto Stroop</span>
+          <h1>No leas, <span class="stroop" data-ink="azul" data-swap data-word="observa">¡observa!</span></h1>
+          <p class="lead">Descubre cómo la atención, la percepción y la lectura automática ponen a prueba nuestro cerebro.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="projects.html#prueba">Hacer la prueba</a>
+            <a class="btn" href="projects.html">Conocer el experimento</a>
+          </div>
+          <p class="hero-note">Di en voz alta el color de la tinta de cada palabra del tablero, no lo que dice. ¿Cuánto tardas?</p>
+        </div>
+        <div>
+          <div class="stroop-board" aria-label="Tablero de palabras de colores impresas en tinta de otro color">
+            <span data-ink="verde" data-swap>Rojo</span>
+            <span data-ink="rojo" data-swap>Azul</span>
+            <span data-ink="amarillo" data-swap>Verde</span>
+            <span data-ink="azul" data-swap>Amarillo</span>
+            <span data-ink="naranja" data-swap>Morado</span>
+            <span data-ink="morado" data-swap>Naranja</span>
+            <span data-ink="amarillo" data-swap>Azul</span>
+            <span data-ink="verde" data-swap>Rojo</span>
+            <span data-ink="rojo" data-swap>Verde</span>
+          </div>
+          <p class="stroop-board-caption">Las tintas cambian cada pocos segundos. Nunca coinciden con la palabra.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span data-ink="azul">Rojo</span><span data-ink="verde">Azul</span><span data-ink="rojo">Verde</span><span data-ink="morado">Amarillo</span>
+        <span data-ink="amarillo">Morado</span><span data-ink="azul">Naranja</span><span data-ink="naranja">Azul</span><span data-ink="verde">Rojo</span>
+        <span data-ink="rojo">Amarillo</span><span data-ink="morado">Verde</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Bienvenida</span>
+          <h2>Un experimento de 1935 que tu cerebro sigue sin poder ganar</h2>
+          <p class="lead">El efecto Stroop es uno de los experimentos más conocidos de la psicología cognitiva. Demuestra cómo la lectura automática puede interferir cuando intentamos nombrar el color de una palabra. En este sitio podrás conocer su historia, realizar actividades y explorar recursos relacionados con este fenómeno.</p>
+        </div>
+        <div class="grid grid-4">
+          <a class="card card-link card-rojo" href="projects.html#prueba">
+            <span class="tag">Actividad</span>
+            <h3>Prueba interactiva</h3>
+            <p>Mide tu propio tiempo de reacción con palabras congruentes e incongruentes.</p>
+          </a>
+          <a class="card card-link card-azul" href="projects.html">
+            <span class="tag">Proyectos</span>
+            <h3>El experimento</h3>
+            <p>Qué es, quién lo descubrió, cómo se hizo y qué resultados obtuvo.</p>
+          </a>
+          <a class="card card-link card-verde" href="texts.html">
+            <span class="tag">Textos</span>
+            <h3>Poema, cómic y carta</h3>
+            <p>Tres textos propios que explican el fenómeno desde otro ángulo.</p>
+          </a>
+          <a class="card card-link card-morado" href="videos.html">
+            <span class="tag">Videos</span>
+            <h3>Galería</h3>
+            <p>Videos, documentales y podcasts para seguir explorando.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid-2">
+        <div>
+          <span class="eyebrow">En un vistazo</span>
+          <h2>Congruente contra incongruente</h2>
+          <p>Cuando la palabra y la tinta coinciden, respondemos rápido. Cuando no coinciden, el significado de la palabra se mete en medio y tardamos más. Esa diferencia de tiempo es el efecto Stroop.</p>
+          <p><a class="btn" href="projects.html">Ver el experimento completo</a></p>
+        </div>
+        <figure class="figure">
+          <img src="assets/img/congruente-incongruente.jpg" alt="Dos columnas de palabras: a la izquierda cada nombre de color está en su propia tinta; a la derecha cada uno está en una tinta distinta" width="840" height="506">
+          <figcaption>Lado congruente y lado incongruente del estímulo clásico.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">El equipo</span>
+          <h2>Fotos y reel</h2>
+          <p class="lead">Aquí irán las fotos del equipo y el reel de presentación del proyecto.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="placeholder">
+            <strong>Reel de presentación</strong>
+            Pendiente. Cuando esté grabado se incrusta aquí.
+          </div>
+          <div class="placeholder">
+            <strong>Fotos del equipo</strong>
+            Pendiente. Una foto por integrante o una grupal.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>Proyecto académico · Facultad de Psicología, UNICACH · 2026</span>
+      <span><a href="about.html">Conoce al equipo</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
