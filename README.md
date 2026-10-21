@@ -27,6 +27,6 @@ Luego abre http://localhost:8080.
 
 - Reel y fotos del equipo (Inicio y Nosotros).
 - Historias de Paola Arminda y Yuridia Stefani (Nosotros).
-- Enlaces de los tres videos de YouTube y la lista de documentales y podcasts (Videos).
+- Lista de documentales y películas (Videos).
 - Dirección y horario de las bibliotecas (Sitios de interés).
 - Animación y diseño de espacio.
