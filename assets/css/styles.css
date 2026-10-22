@@ -282,13 +282,22 @@ p { margin: 0 0 1em; }
 /* Textos */
 .poem { font-size: 1.1rem; line-height: 1.75; white-space: pre-line; background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 3vw, 2.5rem); }
 .poem-title { font-family: var(--display); font-weight: 800; font-size: 1.6rem; margin-bottom: 1rem; letter-spacing: -.02em; }
-.collapsible { background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 3vw, 2.5rem); }
-.collapsible .poem { background: none; border-radius: 0; padding: 0; }
-.collapsible-body { position: relative; overflow: hidden; transition: max-height .45s ease; }
-.collapsible:not(.is-open) .collapsible-body::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(to bottom, transparent, var(--soft)); pointer-events: none; }
-.collapsible-btn { margin-top: 1.25rem; }
+.preview h3 { font-size: 1.45rem; }
+.preview-text { color: var(--muted); }
+.preview-thumb { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 16px; overflow: hidden; aspect-ratio: 4 / 3; }
+.preview-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .3s; }
+.preview-thumb:hover img { transform: scale(1.03); }
+
+/* Lector emergente */
+.reader { border: 0; padding: clamp(1.5rem, 4vw, 2.5rem); border-radius: var(--radius); background: var(--surface); color: var(--fg); width: min(760px, 100% - 2rem); max-height: 90vh; overflow: auto; box-shadow: 0 40px 100px -30px rgba(0,0,0,.5); }
+.reader-wide { width: min(960px, 100% - 2rem); }
+.reader::backdrop { background: rgba(0, 0, 0, .6); backdrop-filter: blur(4px); }
+.reader-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.reader-close { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: var(--soft); color: var(--fg); font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.reader-close:hover { background: var(--line); }
+.reader-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1.25rem; }
+.reader .poem, .reader .letter { background: var(--soft); }
 .letter { background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 3vw, 2.5rem); }
-.letter p:first-of-type::first-letter { font-family: var(--display); font-size: 3em; font-weight: 800; float: left; line-height: .8; margin: .1em .14em 0 0; color: var(--rojo); }
 .ref { display: block; padding: 1.1rem 0; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; }
 .ref:hover .ref-title { color: var(--azul); }
 .ref-title { font-weight: 700; font-size: 1.05rem; }

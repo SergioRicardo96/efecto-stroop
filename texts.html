@@ -49,16 +49,85 @@
         <div class="section-head">
           <span class="eyebrow">Textos propios</span>
           <h2>Un poema, un cómic y una <span class="stroop" data-ink="naranja" data-swap data-word="carta">carta</span></h2>
-          <p class="lead">Tres formas distintas de contar lo mismo: lo que lees y lo que ves no siempre coinciden.</p>
+          <p class="lead">Tres formas distintas de contar lo mismo: lo que lees y lo que ves no siempre coinciden. Abre cada uno para leerlo completo.</p>
         </div>
 
-        <div class="grid grid-2" style="align-items:start">
-          <article>
-            <span class="eyebrow">Poema</span>
-            <div class="collapsible" data-match="#comic-figure">
-              <div class="collapsible-body">
-            <div class="poem">
-              <div class="poem-title">Veo <span data-ink="azul">rojo</span>, pero debo decir <span data-ink="rojo">azul</span></div>Veo el cielo rojo,
+        <div class="grid grid-3">
+          <article class="card card-rojo preview">
+            <span class="tag">Poema</span>
+            <h3>Veo <span data-ink="azul">rojo</span>, pero debo decir <span data-ink="rojo">azul</span></h3>
+            <p class="preview-text">Veo el cielo rojo,<br>con mis ojos lo leo,<br>pero mi boca debe decir celeste,<br>aunque ver me cueste.</p>
+            <p class="card-action"><button type="button" class="btn btn-primary" data-open="reader-poema">Leer el poema</button></p>
+          </article>
+
+          <article class="card card-morado preview">
+            <span class="tag">Cómic</span>
+            <h3>El efecto Stroop en seis viñetas</h3>
+            <button type="button" class="preview-thumb" data-open="reader-comic" aria-label="Ver el cómic completo">
+              <img src="assets/img/comic-efecto-stroop.jpg" alt="" width="1254" height="1254">
+            </button>
+            <p class="card-action"><button type="button" class="btn btn-primary" data-open="reader-comic">Ver el cómic</button></p>
+          </article>
+
+          <article class="card card-verde preview">
+            <span class="tag">Carta</span>
+            <h3>Efecto Stroop</h3>
+            <p class="preview-text">¿Alguna vez te has preguntado por qué resulta difícil decir el color de una palabra cuando su significado no coincide con él? Por ejemplo, si ves la palabra <span class="stroop" data-ink="rojo">azul</span> escrita en color rojo, ¿qué dices primero: la palabra o el color?</p>
+            <p class="card-action"><button type="button" class="btn btn-primary" data-open="reader-carta">Leer la carta</button></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <span class="eyebrow" style="--eyebrow-ink: var(--azul)">Artículo</span>
+        <div class="prose">
+          <h2>¿Qué es el efecto Stroop?</h2>
+          <p>El efecto Stroop, también conocido como interferencia color-palabra, es un fenómeno psicológico que ocurre cuando existe un conflicto entre el significado de una palabra y el color de la tinta con la que está escrita. Fue descrito por el psicólogo estadounidense John Ridley Stroop en 1935.</p>
+          <p>Este fenómeno se produce porque la lectura es un proceso que realizamos de manera automática, por lo que, en ocasiones, leer una palabra puede interferir con nuestra capacidad para identificar el color de la tinta. Esto provoca que tardemos más tiempo en responder y que podamos cometer errores.</p>
+          <p>Por ejemplo, si vemos la palabra <span class="stroop" data-ink="azul">rojo</span> escrita con tinta azul, nuestro cerebro reconoce automáticamente la palabra, pero la tarea consiste en decir el color de la tinta, es decir, "azul". Esta contradicción genera una interferencia que dificulta la respuesta.</p>
+          <p>El efecto Stroop es importante en la psicología porque permite estudiar procesos cognitivos como la atención selectiva y el control inhibitorio, que nos ayudan a concentrarnos en la información relevante e inhibir respuestas automáticas. Por ello, la prueba de Stroop también se utiliza en la evaluación neuropsicológica de funciones ejecutivas.</p>
+          <p>El efecto Stroop demuestra que, aunque leer sea una actividad que realizamos con facilidad, puede interferir con otras tareas que requieren nuestra atención.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--verde)">Lecturas recomendadas</span>
+          <h2>Libros, artículos e infografías</h2>
+        </div>
+        <div class="prose">
+          <a class="ref" href="https://psychclassics.yorku.ca/Stroop/" target="_blank" rel="noopener">
+            <span class="ref-title">Studies of Interference in Serial Verbal Reactions</span>
+            <span class="ref-meta">J. Ridley Stroop, 1935. El artículo original, en inglés. Classics in the History of Psychology.</span>
+          </a>
+          <a class="ref" href="https://doi.org/10.1037/0033-2909.109.2.163" target="_blank" rel="noopener">
+            <span class="ref-title">Half a century of research on the Stroop effect: An integrative review</span>
+            <span class="ref-meta">Colin M. MacLeod, 1991. Psychological Bulletin. La revisión más citada sobre el tema.</span>
+          </a>
+          <a class="ref" href="https://psicologiaymente.com/psicologia/efecto-stroop" target="_blank" rel="noopener">
+            <span class="ref-title">Efecto Stroop: qué es y cómo se utiliza para diagnosticar</span>
+            <span class="ref-meta">Psicología y Mente. Artículo de divulgación en español.</span>
+          </a>
+          <div class="placeholder" style="margin-top:1.5rem">
+            <strong>Infografías y libros</strong>
+            Pendiente. El equipo agregará las referencias que elija.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="reader" id="reader-poema" aria-labelledby="reader-poema-title">
+    <div class="reader-head">
+      <span class="tag">Poema</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="reader-poema-title" class="reader-title">Veo <span data-ink="azul">rojo</span>, pero debo decir <span data-ink="rojo">azul</span></h2>
+    <div class="poem">Veo el cielo rojo,
 con mis ojos lo leo,
 pero mi boca debe decir celeste,
 aunque ver me cueste.
@@ -97,77 +166,32 @@ Así que si me tardo, si me equivoco,
 si digo rojo cuando era azul,
 no es que mi cielo esté mal pintado,
 es que mi mente lee antes de ver la luz.</div>
-              </div>
-              <button type="button" class="btn collapsible-btn" aria-expanded="false">Leer el poema completo</button>
-            </div>
-          </article>
+  </dialog>
 
-          <article>
-            <span class="eyebrow">Cómic</span>
-            <figure class="figure" id="comic-figure">
-              <img src="assets/img/comic-efecto-stroop.jpg" alt="Cómic de siete viñetas: una estudiante explica qué es el efecto Stroop, el experimento original, qué pasa en el cerebro, un ejemplo de la prueba, qué sucede cuando el color y la palabra no coinciden y por qué es importante" width="1254" height="1254">
-              <figcaption>El efecto Stroop: no es solo una prueba, es una ventana a cómo funciona nuestra mente.</figcaption>
-            </figure>
-          </article>
-        </div>
-      </div>
-    </section>
+  <dialog class="reader reader-wide" id="reader-comic" aria-labelledby="reader-comic-title">
+    <div class="reader-head">
+      <span class="tag">Cómic</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="reader-comic-title" class="reader-title">El efecto Stroop en seis viñetas</h2>
+    <img src="assets/img/comic-efecto-stroop.jpg" alt="Cómic de siete viñetas: una estudiante explica qué es el efecto Stroop, el experimento original, qué pasa en el cerebro, un ejemplo de la prueba, qué sucede cuando el color y la palabra no coinciden y por qué es importante" width="1254" height="1254" style="border-radius:16px">
+    <p class="muted" style="margin:1rem 0 0">No es solo una prueba, es una ventana a cómo funciona nuestra mente.</p>
+  </dialog>
 
-    <section class="section">
-      <div class="container">
-        <span class="eyebrow">Carta</span>
-        <div class="letter prose">
-          <h3 style="margin-top:0">Efecto Stroop</h3>
-          <p>¿Alguna vez te has preguntado por qué resulta difícil decir el color de una palabra cuando su significado no coincide con él? Por ejemplo, si ves la palabra <span class="stroop" data-ink="rojo">azul</span> escrita en color rojo, ¿qué dices primero: la palabra o el color? ¡Esto es más complicado de lo que parece!</p>
-          <p>Este fenómeno se conoce como el efecto Stroop, descubierto por el psicólogo estadounidense John Ridley Stroop, quien publicó su investigación en 1935. Este efecto demuestra cómo la lectura automática puede interferir con nuestra capacidad para identificar el color de la tinta.</p>
-          <p>Nosotras somos estudiantes de la Universidad Autónoma de Ciencias y Artes de Chiapas, de la Facultad de Psicología. Debido a un proyecto nos interesó comprender cómo funciona la mente humana y cómo procesos como la atención y la percepción influyen en nuestra conducta.</p>
-          <p>A través de este proyecto, queremos compartir nuestros conocimientos sobre el efecto Stroop, explicar por qué ocurre y mostrar cómo un experimento sencillo puede ayudarnos a comprender mejor el funcionamiento de nuestro cerebro.</p>
-          <p>¡Te invitamos a explorar nuestra página, poner a prueba tu atención y descubrir que no siempre es tan fácil como parece!</p>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Lecturas recomendadas</span>
-          <h2>Libros, artículos e infografías</h2>
-        </div>
-        <div class="prose">
-          <a class="ref" href="https://psychclassics.yorku.ca/Stroop/" target="_blank" rel="noopener">
-            <span class="ref-title">Studies of Interference in Serial Verbal Reactions</span>
-            <span class="ref-meta">J. Ridley Stroop, 1935. El artículo original, en inglés. Classics in the History of Psychology.</span>
-          </a>
-          <a class="ref" href="https://doi.org/10.1037/0033-2909.109.2.163" target="_blank" rel="noopener">
-            <span class="ref-title">Half a century of research on the Stroop effect: An integrative review</span>
-            <span class="ref-meta">Colin M. MacLeod, 1991. Psychological Bulletin. La revisión más citada sobre el tema.</span>
-          </a>
-          <a class="ref" href="https://psicologiaymente.com/psicologia/efecto-stroop" target="_blank" rel="noopener">
-            <span class="ref-title">Efecto Stroop: qué es y cómo se utiliza para diagnosticar</span>
-            <span class="ref-meta">Psicología y Mente. Artículo de divulgación en español.</span>
-          </a>
-          <div class="placeholder" style="margin-top:1.5rem">
-            <strong>Infografías y libros</strong>
-            Pendiente. El equipo agregará las referencias que elija.
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <span class="eyebrow">Artículo</span>
-        <div class="prose">
-          <h2>¿Qué es el efecto Stroop?</h2>
-          <p>El efecto Stroop, también conocido como interferencia color-palabra, es un fenómeno psicológico que ocurre cuando existe un conflicto entre el significado de una palabra y el color de la tinta con la que está escrita. Fue descrito por el psicólogo estadounidense John Ridley Stroop en 1935.</p>
-          <p>Este fenómeno se produce porque la lectura es un proceso que realizamos de manera automática, por lo que, en ocasiones, leer una palabra puede interferir con nuestra capacidad para identificar el color de la tinta. Esto provoca que tardemos más tiempo en responder y que podamos cometer errores.</p>
-          <p>Por ejemplo, si vemos la palabra <span class="stroop" data-ink="azul">rojo</span> escrita con tinta azul, nuestro cerebro reconoce automáticamente la palabra, pero la tarea consiste en decir el color de la tinta, es decir, "azul". Esta contradicción genera una interferencia que dificulta la respuesta.</p>
-          <p>El efecto Stroop es importante en la psicología porque permite estudiar procesos cognitivos como la atención selectiva y el control inhibitorio, que nos ayudan a concentrarnos en la información relevante e inhibir respuestas automáticas. Por ello, la prueba de Stroop también se utiliza en la evaluación neuropsicológica de funciones ejecutivas.</p>
-          <p>El efecto Stroop demuestra que, aunque leer sea una actividad que realizamos con facilidad, puede interferir con otras tareas que requieren nuestra atención.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <dialog class="reader" id="reader-carta" aria-labelledby="reader-carta-title">
+    <div class="reader-head">
+      <span class="tag">Carta</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="reader-carta-title" class="reader-title">Efecto Stroop</h2>
+    <div class="letter">
+      <p>¿Alguna vez te has preguntado por qué resulta difícil decir el color de una palabra cuando su significado no coincide con él? Por ejemplo, si ves la palabra <span class="stroop" data-ink="rojo">azul</span> escrita en color rojo, ¿qué dices primero: la palabra o el color? ¡Esto es más complicado de lo que parece!</p>
+      <p>Este fenómeno se conoce como el efecto Stroop, descubierto por el psicólogo estadounidense John Ridley Stroop, quien publicó su investigación en 1935. Este efecto demuestra cómo la lectura automática puede interferir con nuestra capacidad para identificar el color de la tinta.</p>
+      <p>Nosotras somos estudiantes de la Universidad Autónoma de Ciencias y Artes de Chiapas, de la Facultad de Psicología. Debido a un proyecto nos interesó comprender cómo funciona la mente humana y cómo procesos como la atención y la percepción influyen en nuestra conducta.</p>
+      <p>A través de este proyecto, queremos compartir nuestros conocimientos sobre el efecto Stroop, explicar por qué ocurre y mostrar cómo un experimento sencillo puede ayudarnos a comprender mejor el funcionamiento de nuestro cerebro.</p>
+      <p>¡Te invitamos a explorar nuestra página, poner a prueba tu atención y descubrir que no siempre es tan fácil como parece!</p>
+    </div>
+  </dialog>
 
   <footer class="site-footer">
     <div class="container">

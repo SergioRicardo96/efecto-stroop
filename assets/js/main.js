@@ -76,31 +76,19 @@
     }, 4000);
   }
 
-  document.querySelectorAll('.collapsible').forEach(function (box) {
-    var body = box.querySelector('.collapsible-body');
-    var btn = box.querySelector('.collapsible-btn');
-    var sel = box.getAttribute('data-match');
-    var match = sel ? document.querySelector(sel) : null;
-    var openText = btn.textContent;
-    var fit = function () {
-      if (box.classList.contains('is-open')) { body.style.maxHeight = body.scrollHeight + 'px'; return; }
-      var target = 440;
-      if (match && window.innerWidth > 600 && match.offsetHeight) {
-        var frame = box.getBoundingClientRect().height - body.getBoundingClientRect().height;
-        target = match.getBoundingClientRect().height - frame;
-      }
-      body.style.maxHeight = Math.max(220, target) + 'px';
-    };
+  document.querySelectorAll('[data-open]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var open = box.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      btn.textContent = open ? 'Mostrar menos' : openText;
-      fit();
-      if (!open) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var dlg = document.getElementById(btn.getAttribute('data-open'));
+      if (dlg && typeof dlg.showModal === 'function') dlg.showModal();
     });
-    fit();
-    window.addEventListener('load', fit);
-    window.addEventListener('resize', fit);
+  });
+  document.querySelectorAll('dialog.reader').forEach(function (dlg) {
+    dlg.querySelectorAll('[data-close]').forEach(function (b) {
+      b.addEventListener('click', function () { dlg.close(); });
+    });
+    dlg.addEventListener('click', function (e) {
+      if (e.target === dlg) dlg.close();
+    });
   });
 
   var targets = document.querySelectorAll('.section-head, .card, .tile, .figure, .board, .stat, .test, .placeholder, .poem, .letter, .ref');
@@ -111,6 +99,7 @@
       });
     }, { rootMargin: '0px 0px -8% 0px' });
     targets.forEach(function (el, i) {
+      if (el.closest('dialog')) return;
       el.classList.add('reveal');
       el.style.transitionDelay = (i % 4) * 60 + 'ms';
       io.observe(el);
