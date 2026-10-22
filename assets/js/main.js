@@ -52,7 +52,21 @@
   }
 
   var track = document.querySelector('.ticker-track');
-  if (track) track.innerHTML += track.innerHTML;
+  if (track) {
+    var base = track.innerHTML;
+    var fillTicker = function () {
+      track.innerHTML = base;
+      var reps = Math.max(1, Math.ceil(window.innerWidth / track.scrollWidth));
+      var half = new Array(reps + 1).join(base);
+      track.innerHTML = half + half;
+    };
+    fillTicker();
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fillTicker, 150);
+    });
+  }
 
   var mark = document.querySelector('.brand .mark');
   if (mark && !reduced) {
