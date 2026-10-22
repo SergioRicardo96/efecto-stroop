@@ -248,6 +248,8 @@ p { margin: 0 0 1em; }
 
 /* Prueba interactiva */
 .test { background: var(--soft); color: var(--fg); border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 3rem); max-width: 760px; margin-inline: auto; }
+.section-soft .test { background: var(--surface); box-shadow: 0 30px 60px -40px rgba(0,0,0,.25); }
+.section-soft .test-stage, .section-soft .test-choices button { background: var(--soft); }
 .section-dark .test .btn { border-color: var(--fg); color: var(--fg); }
 .section-dark .test .btn-primary { background: var(--fg); color: var(--bg); }
 .section-dark .test .btn-primary:hover { background: var(--azul); border-color: var(--azul); color: #fff; }
