@@ -23,9 +23,8 @@
   var themeBtn = document.querySelector('.theme-toggle');
   if (themeBtn) {
     var root = document.documentElement;
-    var media = window.matchMedia('(prefers-color-scheme: dark)');
     var current = function () {
-      return root.getAttribute('data-theme') || (media.matches ? 'dark' : 'light');
+      return root.getAttribute('data-theme') || 'dark';
     };
     var label = function () {
       themeBtn.setAttribute('aria-label', current() === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');

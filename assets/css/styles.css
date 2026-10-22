@@ -1,14 +1,14 @@
 :root {
-  --bg: #ffffff;
-  --fg: #0e0e11;
-  --muted: #6b6b75;
-  --soft: #f3f3f6;
-  --surface: #ffffff;
-  --line: rgba(14, 14, 17, .08);
-  --dark: #0e0e11;
-  --dark-2: #0e0e11;
+  --bg: #0e0e11;
+  --fg: #f4f4f6;
+  --muted: #9a9aa6;
+  --soft: #17171d;
+  --surface: #1e1e25;
+  --line: rgba(255, 255, 255, .1);
+  --dark: #070709;
+  --dark-2: #15151b;
   --rojo: #ff3b30;
-  --azul: #2f6bff;
+  --azul: #4d80ff;
   --verde: #12b457;
   --amarillo: #ffc400;
   --morado: #8e4bff;
@@ -18,17 +18,11 @@
   --max: 1180px;
   --font: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
   --display: "Plus Jakarta Sans", "Rubik", system-ui, sans-serif;
-  color-scheme: light;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0e0e11; --fg: #f4f4f6; --muted: #9a9aa6; --soft: #17171d; --surface: #1e1e25;
-    --line: rgba(255, 255, 255, .1); --dark: #070709; --dark-2: #15151b; --azul: #4d80ff; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0e0e11; --fg: #f4f4f6; --muted: #9a9aa6; --soft: #17171d; --surface: #1e1e25;
-  --line: rgba(255, 255, 255, .1); --dark: #070709; --dark-2: #15151b; --azul: #4d80ff; color-scheme: dark;
+:root[data-theme="light"] {
+  --bg: #ffffff; --fg: #0e0e11; --muted: #6b6b75; --soft: #f3f3f6; --surface: #ffffff;
+  --line: rgba(14, 14, 17, .08); --dark: #0e0e11; --dark-2: #0e0e11; --azul: #2f6bff; color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -106,13 +100,9 @@ p { margin: 0 0 1em; }
 }
 .nav-toggle:hover, .theme-toggle:hover { background: rgba(255,255,255,.1); }
 .theme-toggle svg { width: 20px; height: 20px; }
-.theme-toggle .icon-sun { display: none; }
-:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
-:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
-}
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
 .nav-toggle { display: none; flex-direction: column; gap: 5px; }
 .nav-toggle span { width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: transform .2s, opacity .2s; }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
