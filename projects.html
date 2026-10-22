@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Proyectos · No leas, ¡observa!</title>
   <meta name="description" content="Prueba científica del efecto Stroop: qué es, quién lo descubrió, cómo se realizó, qué se midió y resultados. Prueba interactiva y tres proyectos similares.">
+  <meta name="theme-color" content="#0e0e11">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230e0e11%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-family=%27Arial Black,Arial%27 font-weight=%27900%27 font-size=%2738%27 text-anchor=%27middle%27 fill=%27%232f6bff%27%3ES%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -67,28 +69,47 @@
             </ul>
           </div>
 
-          <div class="grid" style="gap:1rem">
-            <figure class="figure">
-              <img src="assets/img/john-ridley-stroop.jpg" alt="Retrato en sepia de John Ridley Stroop, con lentes redondos y traje" width="1200" height="659">
-              <figcaption>John Ridley Stroop (1897-1973).</figcaption>
-            </figure>
-            <figure class="figure">
-              <img src="assets/img/tres-tareas.jpg" alt="Tres columnas: leer las palabras en negro, decir el color de filas de equis de colores, y decir el color de la tinta de nombres de colores" width="850" height="352">
-              <figcaption>Las tres tareas del experimento: leer palabras, nombrar colores y nombrar la tinta de palabras en conflicto.</figcaption>
-            </figure>
-            <figure class="figure">
-              <img src="assets/img/cuadricula-palabras.jpg" alt="Cuadrícula de dieciséis nombres de colores, cada uno impreso en una tinta distinta a la que nombra" width="1024" height="768">
-              <figcaption>Di el color en que está impresa cada palabra.</figcaption>
-            </figure>
-          </div>
+          <figure class="figure">
+            <img src="assets/img/john-ridley-stroop.jpg" alt="Retrato en sepia de John Ridley Stroop, con lentes redondos y traje" width="1200" height="659">
+            <figcaption>John Ridley Stroop (1897-1973).</figcaption>
+          </figure>
+        </div>
+
+        <div class="grid grid-2" style="margin-top:1.25rem">
+            <div class="board">
+              <div class="board-title">Las tres tareas del experimento</div>
+              <div class="board-tasks">
+                <div>
+                  <p class="muted" style="font-size:.85rem;margin-bottom:.5rem">1. Leer las palabras</p>
+                  <div class="board-words"><span>Rojo</span><span>Azul</span><span>Verde</span><span>Rojo</span><span>Azul</span><span>Verde</span></div>
+                </div>
+                <div>
+                  <p class="muted" style="font-size:.85rem;margin-bottom:.5rem">2. Nombrar el color</p>
+                  <div class="board-words"><span data-ink="verde">XXXX</span><span data-ink="rojo">XXXX</span><span data-ink="azul">XXXX</span><span data-ink="rojo">XXXX</span><span data-ink="verde">XXXX</span><span data-ink="azul">XXXX</span></div>
+                </div>
+                <div>
+                  <p class="muted" style="font-size:.85rem;margin-bottom:.5rem">3. Nombrar la tinta</p>
+                  <div class="board-words"><span data-ink="verde">Rojo</span><span data-ink="rojo">Azul</span><span data-ink="azul">Verde</span><span data-ink="azul">Rojo</span><span data-ink="verde">Azul</span><span data-ink="rojo">Verde</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="board board-grid">
+              <div class="board-title">Di el color en que está impresa cada palabra</div>
+              <div class="board-words">
+                <span data-ink="azul">Rojo</span><span data-ink="amarillo">Azul</span><span data-ink="rojo">Verde</span><span data-ink="verde">Amarillo</span>
+                <span data-ink="amarillo">Azul</span><span data-ink="verde">Amarillo</span><span data-ink="azul">Rojo</span><span data-ink="rojo">Verde</span>
+                <span data-ink="rojo">Verde</span><span data-ink="azul">Rojo</span><span data-ink="verde">Amarillo</span><span data-ink="amarillo">Azul</span>
+                <span data-ink="verde">Amarillo</span><span data-ink="rojo">Verde</span><span data-ink="amarillo">Azul</span><span data-ink="azul">Rojo</span>
+              </div>
+            </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-dark">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">5. Resultados</span>
+          <span class="eyebrow" style="--eyebrow-ink: var(--amarillo); color: rgba(255,255,255,.6)">5. Resultados</span>
           <h2>100 participantes, 74.3 % más de tiempo</h2>
           <p class="lead">En el experimento original, 100 participantes tardaron en promedio:</p>
         </div>
@@ -102,18 +123,18 @@
             <div class="lbl">Nombrar la tinta de palabras conflictivas</div>
           </div>
           <div class="stat">
-            <div class="num" data-ink="azul">+47 s</div>
+            <div class="num" data-ink="amarillo">+47 s</div>
             <div class="lbl">74.3 % más de tiempo con las palabras contradictorias</div>
           </div>
         </div>
-        <p class="prose"><strong>Conclusión:</strong> nuestro cerebro suele leer las palabras de forma automática, por eso cuesta más trabajo ignorar su significado y concentrarse únicamente en el color de la tinta.</p>
+        <p class="prose lead"><strong style="color:#fff">Conclusión:</strong> nuestro cerebro suele leer las palabras de forma automática, por eso cuesta más trabajo ignorar su significado y concentrarse únicamente en el color de la tinta.</p>
       </div>
     </section>
 
     <section class="section" id="prueba">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Proyecto grupal propio</span>
+          <span class="eyebrow" style="--eyebrow-ink: var(--azul)">Proyecto grupal propio</span>
           <h2>Haz la prueba <span class="stroop" data-ink="amarillo" data-swap data-word="ahora">ahora</span></h2>
           <p class="lead">Nuestra versión digital del experimento. Verás 24 palabras: en la mitad la tinta coincide con la palabra y en la otra mitad no. Al final comparamos tus tiempos con los de Stroop.</p>
         </div>
@@ -158,32 +179,41 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-soft">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Otros tres proyectos similares</span>
+          <span class="eyebrow" style="--eyebrow-ink: var(--morado)">Otros tres proyectos similares</span>
           <h2>Mismo conflicto, distintos estímulos</h2>
           <p class="lead">Tres pruebas clásicas que, igual que el Stroop, miden qué pasa cuando una parte del estímulo no se puede ignorar.</p>
         </div>
         <div class="grid grid-3">
-          <article class="card card-rojo">
-            <figure class="figure" style="margin-bottom:1rem">
-              <img src="assets/img/stroop-emocional.jpg" alt="Comparación de la tarea Stroop estándar con la emocional: palabras de colores frente a palabras como peligro o ataque, en tintas de colores" width="736" height="520">
-            </figure>
+          <article class="card card-rojo" style="background:#fff">
+            <div class="board" style="margin-bottom:1.25rem">
+              <div class="board-words" style="grid-template-columns:1fr 1fr;text-align:center">
+                <span data-ink="azul">Peligro</span><span data-ink="verde">Casa</span><span data-ink="rojo">Muerte</span><span data-ink="amarillo">Risa</span>
+              </div>
+            </div>
             <h3>Stroop emocional</h3>
             <p>Las palabras con carga emocional pueden aumentar el tiempo de respuesta. En lugar de nombres de colores se muestran palabras como "peligro" o "muerte" junto a palabras neutras, todas en distintas tintas, y la tarea sigue siendo decir el color. Las personas con ansiedad tardan más con las palabras amenazantes: la atención se desvía hacia lo que preocupa. El conflicto ya no es entre palabra y tinta, sino entre la emoción y la tarea.</p>
           </article>
-          <article class="card card-azul">
-            <figure class="figure" style="margin-bottom:1rem">
-              <img src="assets/img/tarea-simon.jpg" alt="Esquema de la tarea de Simon con condiciones control, congruente e incongruente según la posición de una flecha" width="1024" height="768">
-            </figure>
+          <article class="card card-azul" style="background:#fff">
+            <div class="board" style="margin-bottom:1.25rem">
+              <div class="board-words" style="grid-template-columns:1fr 1fr;text-align:center">
+                <span data-ink="verde" style="font-size:2.2rem">→</span><span data-ink="rojo" style="font-size:2.2rem">←</span>
+                <span class="muted" style="font-size:.75rem;font-weight:500;text-transform:none;letter-spacing:0;line-height:1.3">Izquierda, apunta a la derecha: lento</span>
+                <span class="muted" style="font-size:.75rem;font-weight:500;text-transform:none;letter-spacing:0;line-height:1.3">Derecha, apunta a la izquierda: lento</span>
+              </div>
+            </div>
             <h3>Tarea de Simon</h3>
             <p>Evalúa cómo la posición de un estímulo interfiere con la respuesta. Aparece una flecha o un color a la izquierda o a la derecha de la pantalla y hay que responder según su significado, no según dónde apareció. Cuando la posición y la respuesta no coinciden, por ejemplo una flecha hacia la derecha que aparece a la izquierda, la respuesta es más lenta. Igual que en el Stroop, hay una característica irrelevante que no podemos ignorar del todo.</p>
           </article>
-          <article class="card card-verde">
-            <figure class="figure" style="margin-bottom:1rem">
-              <img src="assets/img/prueba-flanker.jpg" alt="Filas de flechas de la prueba Flanker: congruente, incongruente, neutral y no-go" width="423" height="335">
-            </figure>
+          <article class="card card-verde" style="background:#fff">
+            <div class="board" style="margin-bottom:1.25rem">
+              <div class="board-words" style="grid-template-columns:1fr;text-align:center">
+                <span><span data-ink="verde">← ← ← ← ←</span></span>
+                <span><span data-ink="rojo">← ← → ← ←</span></span>
+              </div>
+            </div>
             <h3>Prueba Flanker</h3>
             <p>Mide la atención selectiva mediante estímulos distractores. Se muestra una flecha central rodeada de otras flechas y hay que indicar hacia dónde apunta la del centro. Si las de los lados apuntan al mismo lado la respuesta es rápida; si apuntan al contrario tardamos más y cometemos más errores. Mide el control de la interferencia como el Stroop, pero sin palabras.</p>
           </article>
@@ -194,7 +224,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <span>Proyecto académico · Facultad de Psicología, UNICACH · 2026</span>
+      <div><span class="footer-mark"><span data-ink="rojo">No</span> leas, <span data-ink="azul">observa</span></span>Proyecto académico · Facultad de Psicología, UNICACH · 2026</div>
       <span><a href="index.html">Volver al inicio</a></span>
     </div>
   </footer>

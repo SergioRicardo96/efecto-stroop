@@ -11,6 +11,7 @@
   if (toggle && nav) {
     toggle.addEventListener('click', function () {
       var open = nav.classList.toggle('is-open');
+      document.body.classList.toggle('nav-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     });
@@ -40,5 +41,19 @@
     setInterval(function () {
       letters.forEach(function (l) { l.setAttribute('data-ink', pickIncongruent('', l.getAttribute('data-ink'))); });
     }, 4000);
+  }
+
+  var targets = document.querySelectorAll('.section-head, .card, .tile, .figure, .board, .stat, .test, .placeholder, .poem, .letter, .ref');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    targets.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i % 4) * 60 + 'ms';
+      io.observe(el);
+    });
   }
 })();
