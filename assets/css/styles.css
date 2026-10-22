@@ -248,6 +248,8 @@ p { margin: 0 0 1em; }
 .test { background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 3rem); max-width: 760px; margin-inline: auto; }
 .test-top { display: flex; justify-content: space-between; gap: 1rem; font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
 .test-top strong { color: var(--fg); }
+.test-timer strong { font-family: var(--display); font-size: 1.35rem; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+@media (max-width: 600px) { .test-top { flex-wrap: wrap; } .test-top > span:last-child { width: 100%; } }
 .test-stage { min-height: 200px; display: grid; place-items: center; background: var(--surface); border-radius: 20px; margin-bottom: 1.25rem; padding: 1rem; text-align: center; }
 .test-word { font-family: var(--display); font-size: clamp(3rem, 11vw, 6rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.03em; line-height: 1; }
 .test-choices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }

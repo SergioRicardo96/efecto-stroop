@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=3">
 </head>
 <body>
   <a class="skip" href="#inicio">Ir al contenido</a>
@@ -330,6 +330,7 @@
           <div class="test-play" hidden>
             <div class="test-top">
               <span>Palabra <strong class="test-counter">1 / 24</strong></span>
+              <span class="test-timer" aria-label="Cronómetro"><strong>0:00.0</strong></span>
               <span>Di el color de la tinta</span>
             </div>
             <div class="progress"><i></i></div>
@@ -342,6 +343,7 @@
             <h3>Tus resultados</h3>
             <table>
               <tbody>
+                <tr><th>Tiempo total</th><td data-out="total"></td></tr>
                 <tr><th>Tiempo promedio, palabras congruentes</th><td data-out="con"></td></tr>
                 <tr><th>Tiempo promedio, palabras incongruentes</th><td data-out="inc"></td></tr>
                 <tr><th>Diferencia</th><td data-out="diff"></td></tr>
@@ -697,7 +699,7 @@ es que mi mente lee antes de ver la luz.</div>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/stroop-test.js"></script>
+  <script src="assets/js/main.js?v=3"></script>
+  <script src="assets/js/stroop-test.js?v=3"></script>
 </body>
 </html>

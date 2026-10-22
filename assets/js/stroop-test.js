@@ -22,11 +22,35 @@
   var startBtn = root.querySelector('.test-start');
   var restartBtns = root.querySelectorAll('.test-restart');
 
+  var timer = root.querySelector('.test-timer strong');
   var trials = [];
   var index = 0;
   var shownAt = 0;
   var locked = false;
   var records = [];
+  var startedAt = 0;
+  var ticker = null;
+
+  function formatTime(ms) {
+    var s = ms / 1000;
+    var m = Math.floor(s / 60);
+    var rest = s - m * 60;
+    return m + ':' + (rest < 10 ? '0' : '') + rest.toFixed(1);
+  }
+
+  function startClock() {
+    startedAt = performance.now();
+    timer.textContent = '0:00.0';
+    clearInterval(ticker);
+    ticker = setInterval(function () { timer.textContent = formatTime(performance.now() - startedAt); }, 100);
+  }
+
+  function stopClock() {
+    clearInterval(ticker);
+    var total = performance.now() - startedAt;
+    timer.textContent = formatTime(total);
+    return total;
+  }
 
   function shuffle(arr) {
     for (var i = arr.length - 1; i > 0; i--) {
@@ -91,9 +115,11 @@
   }
 
   function finish() {
+    var total = stopClock();
     bar.style.width = '100%';
     play.hidden = true;
     results.hidden = false;
+    results.querySelector('[data-out="total"]').textContent = total < 60000 ? (total / 1000).toFixed(1) + ' s' : formatTime(total) + ' min';
 
     var con = records.filter(function (r) { return r.congruent && r.correct; });
     var inc = records.filter(function (r) { return !r.congruent && r.correct; });
@@ -128,6 +154,7 @@
     results.hidden = true;
     play.hidden = false;
     renderChoices();
+    startClock();
     showTrial();
   }
 
