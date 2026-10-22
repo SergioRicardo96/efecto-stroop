@@ -55,6 +55,8 @@
         <div class="grid grid-2" style="align-items:start">
           <article>
             <span class="eyebrow">Poema</span>
+            <div class="collapsible" data-match="#comic-figure">
+              <div class="collapsible-body">
             <div class="poem">
               <div class="poem-title">Veo <span data-ink="azul">rojo</span>, pero debo decir <span data-ink="rojo">azul</span></div>Veo el cielo rojo,
 con mis ojos lo leo,
@@ -95,11 +97,14 @@ Así que si me tardo, si me equivoco,
 si digo rojo cuando era azul,
 no es que mi cielo esté mal pintado,
 es que mi mente lee antes de ver la luz.</div>
+              </div>
+              <button type="button" class="btn collapsible-btn" aria-expanded="false">Leer el poema completo</button>
+            </div>
           </article>
 
           <article>
             <span class="eyebrow">Cómic</span>
-            <figure class="figure">
+            <figure class="figure" id="comic-figure">
               <img src="assets/img/comic-efecto-stroop.jpg" alt="Cómic de siete viñetas: una estudiante explica qué es el efecto Stroop, el experimento original, qué pasa en el cerebro, un ejemplo de la prueba, qué sucede cuando el color y la palabra no coinciden y por qué es importante" width="1254" height="1254">
               <figcaption>El efecto Stroop: no es solo una prueba, es una ventana a cómo funciona nuestra mente.</figcaption>
             </figure>

@@ -280,6 +280,11 @@ p { margin: 0 0 1em; }
 /* Textos */
 .poem { font-size: 1.1rem; line-height: 1.75; white-space: pre-line; background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 3vw, 2.5rem); }
 .poem-title { font-family: var(--display); font-weight: 800; font-size: 1.6rem; margin-bottom: 1rem; letter-spacing: -.02em; }
+.collapsible { background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 3vw, 2.5rem); }
+.collapsible .poem { background: none; border-radius: 0; padding: 0; }
+.collapsible-body { position: relative; overflow: hidden; transition: max-height .45s ease; }
+.collapsible:not(.is-open) .collapsible-body::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(to bottom, transparent, var(--soft)); pointer-events: none; }
+.collapsible-btn { margin-top: 1.25rem; }
 .letter { background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 3vw, 2.5rem); }
 .letter p:first-of-type::first-letter { font-family: var(--display); font-size: 3em; font-weight: 800; float: left; line-height: .8; margin: .1em .14em 0 0; color: var(--rojo); }
 .ref { display: block; padding: 1.1rem 0; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; }

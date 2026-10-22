@@ -76,6 +76,33 @@
     }, 4000);
   }
 
+  document.querySelectorAll('.collapsible').forEach(function (box) {
+    var body = box.querySelector('.collapsible-body');
+    var btn = box.querySelector('.collapsible-btn');
+    var sel = box.getAttribute('data-match');
+    var match = sel ? document.querySelector(sel) : null;
+    var openText = btn.textContent;
+    var fit = function () {
+      if (box.classList.contains('is-open')) { body.style.maxHeight = body.scrollHeight + 'px'; return; }
+      var target = 440;
+      if (match && window.innerWidth > 600 && match.offsetHeight) {
+        body.style.maxHeight = '100px';
+        target = 100 + (match.offsetHeight - box.offsetHeight);
+      }
+      body.style.maxHeight = Math.max(220, target) + 'px';
+    };
+    btn.addEventListener('click', function () {
+      var open = box.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Mostrar menos' : openText;
+      fit();
+      if (!open) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    fit();
+    window.addEventListener('load', fit);
+    window.addEventListener('resize', fit);
+  });
+
   var targets = document.querySelectorAll('.section-head, .card, .tile, .figure, .board, .stat, .test, .placeholder, .poem, .letter, .ref');
   if ('IntersectionObserver' in window && !reduced) {
     var io = new IntersectionObserver(function (entries) {
