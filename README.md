@@ -26,6 +26,6 @@ Luego abre http://localhost:8080.
 ## Pendientes de contenido
 
 - Reel y fotos del equipo (Inicio y Nosotros).
-- Historias de Paola Arminda y Yuridia Stefani (Nosotros).
+- Historia de Yuridia Stefani (Nosotros).
 - Lista de documentales y películas (Videos).
 - Animación y diseño de espacio.
