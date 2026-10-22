@@ -86,8 +86,8 @@
       if (box.classList.contains('is-open')) { body.style.maxHeight = body.scrollHeight + 'px'; return; }
       var target = 440;
       if (match && window.innerWidth > 600 && match.offsetHeight) {
-        body.style.maxHeight = '100px';
-        target = 100 + (match.offsetHeight - box.offsetHeight);
+        var frame = box.getBoundingClientRect().height - body.getBoundingClientRect().height;
+        target = match.getBoundingClientRect().height - frame;
       }
       body.style.maxHeight = Math.max(220, target) + 'px';
     };
