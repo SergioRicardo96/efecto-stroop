@@ -312,6 +312,24 @@ p { margin: 0 0 1em; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--dark); color: #fff; padding: .5rem 1rem; z-index: 100; }
 .skip:focus { left: 1rem; top: 1rem; }
 
+/* Una sola página */
+section[id] { scroll-margin-top: 72px; }
+.coming { border-radius: var(--radius); padding: 3rem 1.5rem; text-align: center; color: rgba(255,255,255,.65); background: rgba(255,255,255,.06); }
+.coming strong { display: block; color: #fff; margin-bottom: .25rem; font-family: var(--display); font-size: 1.2rem; }
+.stats-light .stat { background: var(--surface); }
+.stats-light .lbl { color: var(--muted); }
+
+/* Pestañas */
+.tab-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.75rem; }
+.tab-list [role="tab"] {
+  padding: .65rem 1.1rem; border-radius: 999px; border: 2px solid var(--line); background: transparent; color: var(--fg);
+  font-family: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; transition: background .15s, border-color .15s, color .15s;
+}
+.tab-list [role="tab"]:hover { border-color: var(--fg); }
+.tab-list [role="tab"][aria-selected="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.tab-panel { align-items: start; }
+.tab-panel .prose h3 { margin-top: 0; }
+
 /* Aparición al hacer scroll */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }

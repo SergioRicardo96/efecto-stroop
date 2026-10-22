@@ -2,18 +2,20 @@
 
 Sitio estático (HTML, CSS y JavaScript sin dependencias) para el proyecto académico de la Facultad de Psicología, UNICACH.
 
-## Páginas
+## Estructura
 
-| Archivo | Sección |
+Una sola página (`index.html`) con ocho secciones y menú de anclas:
+
+| Ancla | Sección |
 | --- | --- |
-| `index.html` | Inicio |
-| `about.html` | Nosotros |
-| `projects.html` | Proyectos y prueba interactiva (`#prueba`) |
-| `videos.html` | Videos |
-| `texts.html` | Textos |
-| `places.html` | Sitios de interés |
-| `animation.html` | Animación |
-| `space-design.html` | Diseño de espacio |
+| `#inicio` | Inicio |
+| `#nosotros` | Nosotros |
+| `#proyectos` | Proyectos (`#prueba` es la prueba interactiva) |
+| `#videos` | Videos |
+| `#textos` | Textos |
+| `#sitios` | Sitios de interés |
+| `#animacion` | Animación |
+| `#espacio` | Diseño de espacio |
 
 ## Ver en local
 

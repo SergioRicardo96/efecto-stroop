@@ -14,23 +14,23 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <a class="skip" href="#main">Ir al contenido</a>
+  <a class="skip" href="#inicio">Ir al contenido</a>
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="index.html" aria-label="Inicio: No leas, observa">
+      <a class="brand" href="#inicio" aria-label="Inicio: No leas, observa">
         <span class="mark"><span data-ink="azul">St</span><span data-ink="rojo">ro</span><span data-ink="verde">op</span></span>
         <small>No leas, ¡observa!</small>
       </a>
       <nav class="nav" id="nav" aria-label="Secciones del sitio">
         <ul>
-          <li><a href="index.html" aria-current="page">Inicio</a></li>
-          <li><a href="about.html">Nosotros</a></li>
-          <li><a href="projects.html">Proyectos</a></li>
-          <li><a href="videos.html">Videos</a></li>
-          <li><a href="texts.html">Textos</a></li>
-          <li><a href="places.html">Sitios de interés</a></li>
-          <li><a href="animation.html">Animación</a></li>
-          <li><a href="space-design.html">Diseño de espacio</a></li>
+          <li><a href="#inicio" aria-current="page">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="#textos">Textos</a></li>
+          <li><a href="#sitios">Sitios de interés</a></li>
+          <li><a href="#animacion">Animación</a></li>
+          <li><a href="#espacio">Diseño de espacio</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -43,16 +43,17 @@
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero">
+  <main>
+    <!-- 1. Inicio -->
+    <section class="hero" id="inicio">
       <div class="container">
         <div>
           <span class="eyebrow">El efecto Stroop</span>
           <h1>No leas,<br><span class="stroop" data-ink="azul" data-swap data-word="observa">¡observa!</span></h1>
           <p class="lead">Descubre cómo la atención, la percepción y la lectura automática ponen a prueba nuestro cerebro.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="projects.html#prueba">Hacer la prueba</a>
-            <a class="btn" href="projects.html">Conocer el experimento</a>
+            <a class="btn btn-primary" href="#prueba">Hacer la prueba</a>
+            <a class="btn" href="#proyectos">Conocer el experimento</a>
           </div>
           <p class="hero-note">Di en voz alta el color de la tinta de cada palabra del tablero, no lo que dice. ¿Cuánto tardas?</p>
         </div>
@@ -89,59 +90,24 @@
           <p class="lead">El efecto Stroop es uno de los experimentos más conocidos de la psicología cognitiva. Demuestra cómo la lectura automática puede interferir cuando intentamos nombrar el color de una palabra. En este sitio podrás conocer su historia, realizar actividades y explorar recursos relacionados con este fenómeno.</p>
         </div>
         <div class="grid grid-4">
-          <a class="tile bg-rojo" href="projects.html#prueba">
+          <a class="tile bg-rojo" href="#prueba">
             <div><span class="tag">Actividad</span><h3 style="margin-top:1rem">Prueba interactiva</h3><p>Mide tu tiempo de reacción con palabras congruentes e incongruentes.</p></div>
-            <span class="arrow" aria-hidden="true">→</span>
+            <span class="arrow" aria-hidden="true">↓</span>
           </a>
-          <a class="tile bg-azul" href="projects.html">
+          <a class="tile bg-azul" href="#proyectos">
             <div><span class="tag">Proyectos</span><h3 style="margin-top:1rem">El experimento</h3><p>Qué es, quién lo descubrió, cómo se hizo y qué resultados obtuvo.</p></div>
-            <span class="arrow" aria-hidden="true">→</span>
+            <span class="arrow" aria-hidden="true">↓</span>
           </a>
-          <a class="tile bg-verde" href="texts.html">
+          <a class="tile bg-verde" href="#textos">
             <div><span class="tag">Textos</span><h3 style="margin-top:1rem">Poema, cómic y carta</h3><p>Tres textos propios que explican el fenómeno desde otro ángulo.</p></div>
-            <span class="arrow" aria-hidden="true">→</span>
+            <span class="arrow" aria-hidden="true">↓</span>
           </a>
-          <a class="tile bg-amarillo tile-amarillo" href="videos.html">
+          <a class="tile bg-amarillo tile-amarillo" href="#videos">
             <div><span class="tag">Videos</span><h3 style="margin-top:1rem">Galería</h3><p>Podcast, videos y retos para seguir explorando.</p></div>
-            <span class="arrow" aria-hidden="true">→</span>
+            <span class="arrow" aria-hidden="true">↓</span>
           </a>
         </div>
-      </div>
-    </section>
-
-    <section class="section section-soft">
-      <div class="container grid grid-2" style="align-items:center">
-        <div>
-          <span class="eyebrow" style="--eyebrow-ink: var(--azul)">En un vistazo</span>
-          <h2>Congruente contra incongruente</h2>
-          <p class="lead">Cuando la palabra y la tinta coinciden, respondemos rápido. Cuando no coinciden, el significado de la palabra se mete en medio y tardamos más. Esa diferencia de tiempo es el efecto Stroop.</p>
-          <p><a class="btn btn-primary" href="projects.html">Ver el experimento completo</a></p>
-        </div>
-        <div class="board board-compare" style="background:var(--surface)">
-          <div>
-            <div class="board-title">Congruente</div>
-            <div class="board-words">
-              <span data-ink="rojo">Rojo</span><span data-ink="verde">Verde</span><span data-ink="azul">Azul</span><span data-ink="amarillo">Amarillo</span>
-            </div>
-          </div>
-          <div>
-            <div class="board-title">Incongruente</div>
-            <div class="board-words">
-              <span data-ink="azul">Rojo</span><span data-ink="amarillo">Verde</span><span data-ink="rojo">Azul</span><span data-ink="verde">Amarillo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow" style="--eyebrow-ink: var(--morado)">El equipo</span>
-          <h2>Fotos y reel</h2>
-          <p class="lead">Aquí irán las fotos del equipo y el reel de presentación del proyecto.</p>
-        </div>
-        <div class="grid grid-2">
+        <div class="grid grid-2" style="margin-top:3rem">
           <div class="placeholder">
             <strong>Reel de presentación</strong>
             Pendiente. Cuando esté grabado se incrusta aquí.
@@ -153,15 +119,585 @@
         </div>
       </div>
     </section>
+
+    <!-- 2. Nosotros -->
+    <section class="section section-soft" id="nosotros">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--azul)">Nosotros</span>
+          <h2>Somos <span class="stroop" data-ink="rojo" data-swap data-word="seis">seis</span> alumnas de primer semestre</h2>
+          <p class="lead">Somos alumnas de primer semestre de la Universidad Autónoma de Ciencias y Artes de Chiapas. Este sitio fue creado como un proyecto académico para explicar el efecto Stroop de una manera más interactiva. Nuestro objetivo es acercar la psicología cognitiva al público mediante actividades, recursos visuales y contenido digital que facilite comprender cómo funciona la atención y el procesamiento de la información.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card card-rojo person">
+            <div class="avatar bg-rojo" aria-hidden="true">FV</div>
+            <div>
+              <h3>Flor Yamileth Velasco González</h3>
+              <p class="role">Estudiante de Psicología</p>
+              <p>Siempre quise estudiar psicología desde pequeña y uno de los temas que más me llamó la atención fue el efecto Stroop, ya que me parecía curioso cómo simplemente con cambiarle el color a la palabra que estás leyendo te puedes llegar a confundir. Así que me tomé el tiempo para investigar más a fondo y esto fue lo que encontré.</p>
+            </div>
+          </article>
+          <article class="card card-azul person">
+            <div class="avatar bg-azul" aria-hidden="true">FA</div>
+            <div>
+              <h3>Frida Camila Arias Espinosa</h3>
+              <p class="role">Estudiante de Psicología</p>
+              <p>Me interesa descubrir las cosas que suceden en nuestra mente y cómo influyen en nuestra forma de pensar y actuar. Al investigar sobre el efecto Stroop, me llamó mucho la atención que leer sea una actividad tan automática que puede interferir cuando intentamos concentrarnos en el color de una palabra. Me pareció increíble que algo tan cotidiano pudiera demostrar cómo trabaja nuestra atención, así que quise conocer más sobre este experimento y compartir lo que aprendí con otras personas.</p>
+            </div>
+          </article>
+          <article class="card card-verde person">
+            <div class="avatar bg-verde" aria-hidden="true">NS</div>
+            <div>
+              <h3>Natalia Abigail Siliceo Abarca</h3>
+              <p class="role">Estudiante de Psicología</p>
+              <p>Me gusta aprender sobre los procesos mentales que realizamos todos los días, muchas veces sin darnos cuenta. Cuando conocí el efecto Stroop, me pareció muy interesante que nuestro cerebro pueda tener dificultades para identificar un color cuando la palabra escrita nos indica algo diferente. Esto despertó mi curiosidad y me motivó a investigar cómo funciona este experimento y por qué una actividad que parece tan fácil puede convertirse en un verdadero reto.</p>
+            </div>
+          </article>
+          <article class="card card-amarillo person">
+            <div class="avatar bg-amarillo" aria-hidden="true">PL</div>
+            <div>
+              <h3>Paola Arminda López Díaz</h3>
+              <p class="role">Estudiante de Psicología</p>
+              <p>Paola Arminda es estudiante de primer semestre de la Licenciatura en Psicología en la Universidad de Ciencias y Artes de Chiapas (UNICACH). Su formación académica está orientada al estudio de los procesos mentales, el comportamiento humano y los factores que influyen en el desarrollo psicológico. Asimismo, mantiene un especial interés en la comprensión de la conducta humana y en la adquisición de conocimientos que contribuyan a su futuro desempeño profesional en el ámbito de la psicología.</p>
+            </div>
+          </article>
+          <article class="card card-morado person">
+            <div class="avatar bg-morado" aria-hidden="true">YM</div>
+            <div>
+              <h3>Yuridia Stefani Molina Velázquez</h3>
+              <p class="role">Estudiante de Psicología</p>
+              <span class="tag tag-pending">Historia pendiente</span>
+            </div>
+          </article>
+          <article class="card card-naranja person">
+            <div class="avatar bg-naranja" aria-hidden="true">LS</div>
+            <div>
+              <h3>Leilene Mariana Sánchez Anaya</h3>
+              <p class="role">Estudiante de Psicología</p>
+              <p>Me interesa aprender cómo funciona nuestro cerebro y cómo influye en las actividades que hacemos diariamente. Cuando descubrí el efecto Stroop, me pareció curioso que nuestro cerebro pueda confundirse al intentar decir el color de una palabra sin leer lo que dice. Esto me hizo preguntarme por qué sucede y cómo influye nuestra atención en este tipo de situaciones, así que decidí investigar más sobre el tema y crear una actividad para que otras personas también puedan experimentar y comprender este fenómeno psicológico.</p>
+            </div>
+          </article>
+        </div>
+        <p class="muted" style="margin-top:1.5rem">Las fotos de cada integrante sustituirán las iniciales cuando estén disponibles.</p>
+      </div>
+    </section>
+
+    <!-- 3. Proyectos -->
+    <section class="section" id="proyectos">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--verde)">Proyectos · Proyecto inicial</span>
+          <h2>Prueba científica: <span class="stroop" data-ink="verde" data-swap data-word="efecto">efecto</span> Stroop</h2>
+          <p class="lead">Qué es, quién lo descubrió, cómo se realizó, qué se midió y qué resultados obtuvo el experimento original.</p>
+        </div>
+
+        <div class="tabs" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="Apartados del experimento">
+            <button type="button" role="tab" aria-selected="true" aria-controls="tab-que" id="tabbtn-que">1. ¿Qué es?</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="tab-quien" id="tabbtn-quien">2. ¿Quién lo descubrió?</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="tab-como" id="tabbtn-como">3. ¿Cómo se realizó?</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="tab-midio" id="tabbtn-midio">4. ¿Qué se midió?</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="tab-resultados" id="tabbtn-resultados">5. Resultados</button>
+          </div>
+
+          <div class="tab-panel grid grid-2" id="tab-que" role="tabpanel" aria-labelledby="tabbtn-que">
+            <div class="prose">
+              <h3>¿Qué es?</h3>
+              <p>Es un fenómeno psicológico que ocurre cuando la palabra que leemos interfiere con el color de la tinta en la que está escrita. Esto hace que tardemos más tiempo en responder y que podamos cometer errores. Se relaciona con la atención selectiva y el control de la interferencia.</p>
+            </div>
+            <div class="board board-compare">
+              <div>
+                <div class="board-title">Congruente</div>
+                <div class="board-words">
+                  <span data-ink="rojo">Rojo</span><span data-ink="verde">Verde</span><span data-ink="azul">Azul</span><span data-ink="amarillo">Amarillo</span>
+                </div>
+              </div>
+              <div>
+                <div class="board-title">Incongruente</div>
+                <div class="board-words">
+                  <span data-ink="azul">Rojo</span><span data-ink="amarillo">Verde</span><span data-ink="rojo">Azul</span><span data-ink="verde">Amarillo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel grid grid-2" id="tab-quien" role="tabpanel" aria-labelledby="tabbtn-quien" hidden>
+            <div class="prose">
+              <h3>John Ridley Stroop</h3>
+              <p>Fue un psicólogo estadounidense que publicó su investigación sobre este fenómeno en 1935, en un artículo titulado <em>Studies of Interference in Serial Verbal Reactions</em>. Su experimento ayudó a demostrar que leer automáticamente puede interferir con otras tareas mentales.</p>
+            </div>
+            <figure class="figure">
+              <img src="assets/img/john-ridley-stroop.jpg" alt="Retrato en sepia de John Ridley Stroop, con lentes redondos y traje" width="1200" height="659" loading="lazy">
+              <figcaption>John Ridley Stroop (1897-1973).</figcaption>
+            </figure>
+          </div>
+
+          <div class="tab-panel" id="tab-como" role="tabpanel" aria-labelledby="tabbtn-como" hidden>
+            <div class="prose" style="margin-bottom:1.5rem">
+              <h3>¿Cómo se realizó?</h3>
+              <p>Stroop realizó pruebas en las que los participantes debían realizar dos tareas diferentes:</p>
+              <ol>
+                <li><strong>Leer palabras:</strong> leer nombres de colores impresos en tinta de otro color.</li>
+                <li><strong>Nombrar colores:</strong> decir el color de la tinta sin leer la palabra.</li>
+              </ol>
+              <p>Por ejemplo, si la palabra <span class="stroop" data-ink="azul">rojo</span> está escrita con tinta azul, la persona debe decir "azul", no "rojo". También se compararon los resultados con palabras impresas en negro y con cuadrados de colores.</p>
+            </div>
+            <div class="grid grid-2">
+              <div class="board">
+                <div class="board-title">Las tres tareas del experimento</div>
+                <div class="board-tasks">
+                  <div>
+                    <p class="muted" style="font-size:.85rem;margin-bottom:.5rem">1. Leer las palabras</p>
+                    <div class="board-words"><span>Rojo</span><span>Azul</span><span>Verde</span><span>Rojo</span><span>Azul</span><span>Verde</span></div>
+                  </div>
+                  <div>
+                    <p class="muted" style="font-size:.85rem;margin-bottom:.5rem">2. Nombrar el color</p>
+                    <div class="board-words"><span data-ink="verde">XXXX</span><span data-ink="rojo">XXXX</span><span data-ink="azul">XXXX</span><span data-ink="rojo">XXXX</span><span data-ink="verde">XXXX</span><span data-ink="azul">XXXX</span></div>
+                  </div>
+                  <div>
+                    <p class="muted" style="font-size:.85rem;margin-bottom:.5rem">3. Nombrar la tinta</p>
+                    <div class="board-words"><span data-ink="verde">Rojo</span><span data-ink="rojo">Azul</span><span data-ink="azul">Verde</span><span data-ink="azul">Rojo</span><span data-ink="verde">Azul</span><span data-ink="rojo">Verde</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="board board-grid">
+                <div class="board-title">Di el color en que está impresa cada palabra</div>
+                <div class="board-words">
+                  <span data-ink="azul">Rojo</span><span data-ink="amarillo">Azul</span><span data-ink="rojo">Verde</span><span data-ink="verde">Amarillo</span>
+                  <span data-ink="amarillo">Azul</span><span data-ink="verde">Amarillo</span><span data-ink="azul">Rojo</span><span data-ink="rojo">Verde</span>
+                  <span data-ink="rojo">Verde</span><span data-ink="azul">Rojo</span><span data-ink="verde">Amarillo</span><span data-ink="amarillo">Azul</span>
+                  <span data-ink="verde">Amarillo</span><span data-ink="rojo">Verde</span><span data-ink="amarillo">Azul</span><span data-ink="azul">Rojo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="tab-midio" role="tabpanel" aria-labelledby="tabbtn-midio" hidden>
+            <div class="prose">
+              <h3>¿Qué se midió?</h3>
+              <ul>
+                <li>El tiempo que tardaban los participantes en responder.</li>
+                <li>La cantidad de errores cometidos.</li>
+                <li>La diferencia entre las tareas fáciles y las que tenían información contradictoria.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="tab-resultados" role="tabpanel" aria-labelledby="tabbtn-resultados" hidden>
+            <div class="prose">
+              <h3>100 participantes, 74.3 % más de tiempo</h3>
+              <p>En el experimento original, 100 participantes tardaron en promedio:</p>
+            </div>
+            <div class="stats stats-light">
+              <div class="stat">
+                <div class="num" data-ink="verde">63.3 s</div>
+                <div class="lbl">Nombrar el color de cuadrados</div>
+              </div>
+              <div class="stat">
+                <div class="num" data-ink="rojo">110.3 s</div>
+                <div class="lbl">Nombrar la tinta de palabras conflictivas</div>
+              </div>
+              <div class="stat">
+                <div class="num" data-ink="amarillo">+47 s</div>
+                <div class="lbl">74.3 % más de tiempo con las palabras contradictorias</div>
+              </div>
+            </div>
+            <p class="prose"><strong>Conclusión:</strong> nuestro cerebro suele leer las palabras de forma automática, por eso cuesta más trabajo ignorar su significado y concentrarse únicamente en el color de la tinta.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="prueba">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--amarillo); color: rgba(255,255,255,.6)">Proyecto grupal propio</span>
+          <h2>Haz la prueba <span class="stroop" data-ink="amarillo" data-swap data-word="ahora">ahora</span></h2>
+          <p class="lead">Nuestra versión digital del experimento. Verás 24 palabras: en la mitad la tinta coincide con la palabra y en la otra mitad no. Al final comparamos tus tiempos con los de Stroop.</p>
+        </div>
+
+        <div class="test" id="stroop-test">
+          <div class="test-intro">
+            <h3>Instrucciones</h3>
+            <ul>
+              <li>Elige el <strong>color de la tinta</strong>, no lo que dice la palabra.</li>
+              <li>Responde lo más rápido que puedas con los botones o con las teclas 1 a 4.</li>
+              <li>Son 24 palabras y toma menos de un minuto.</li>
+            </ul>
+            <p><button type="button" class="btn btn-primary test-start">Empezar</button></p>
+          </div>
+
+          <div class="test-play" hidden>
+            <div class="test-top">
+              <span>Palabra <strong class="test-counter">1 / 24</strong></span>
+              <span>Di el color de la tinta</span>
+            </div>
+            <div class="progress"><i></i></div>
+            <div class="test-stage"><div class="test-word" aria-live="polite">Rojo</div></div>
+            <div class="test-choices" aria-label="Elige el color de la tinta"></div>
+            <div class="test-feedback" aria-live="polite"></div>
+          </div>
+
+          <div class="test-results" hidden>
+            <h3>Tus resultados</h3>
+            <table>
+              <tbody>
+                <tr><th>Tiempo promedio, palabras congruentes</th><td data-out="con"></td></tr>
+                <tr><th>Tiempo promedio, palabras incongruentes</th><td data-out="inc"></td></tr>
+                <tr><th>Diferencia</th><td data-out="diff"></td></tr>
+                <tr><th>Interferencia</th><td class="big" data-out="pct"></td></tr>
+                <tr><th>Errores</th><td data-out="errors"></td></tr>
+              </tbody>
+            </table>
+            <p class="test-summary"></p>
+            <p><button type="button" class="btn test-restart">Repetir la prueba</button></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--morado)">Otros tres proyectos similares</span>
+          <h2>Mismo conflicto, distintos estímulos</h2>
+          <p class="lead">Tres pruebas clásicas que, igual que el Stroop, miden qué pasa cuando una parte del estímulo no se puede ignorar.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card card-rojo">
+            <div class="board" style="margin-bottom:1.25rem">
+              <div class="board-words" style="grid-template-columns:1fr 1fr;text-align:center">
+                <span data-ink="azul">Peligro</span><span data-ink="verde">Casa</span><span data-ink="rojo">Muerte</span><span data-ink="amarillo">Risa</span>
+              </div>
+            </div>
+            <h3>Stroop emocional</h3>
+            <p>Las palabras con carga emocional pueden aumentar el tiempo de respuesta. En lugar de nombres de colores se muestran palabras como "peligro" o "muerte" junto a palabras neutras, todas en distintas tintas, y la tarea sigue siendo decir el color. Las personas con ansiedad tardan más con las palabras amenazantes: la atención se desvía hacia lo que preocupa. El conflicto ya no es entre palabra y tinta, sino entre la emoción y la tarea.</p>
+          </article>
+          <article class="card card-azul">
+            <div class="board" style="margin-bottom:1.25rem">
+              <div class="board-words" style="grid-template-columns:1fr 1fr;text-align:center">
+                <span data-ink="verde" style="font-size:2.2rem">→</span><span data-ink="rojo" style="font-size:2.2rem">←</span>
+                <span class="muted" style="font-size:.75rem;font-weight:500;text-transform:none;letter-spacing:0;line-height:1.3">Izquierda, apunta a la derecha: lento</span>
+                <span class="muted" style="font-size:.75rem;font-weight:500;text-transform:none;letter-spacing:0;line-height:1.3">Derecha, apunta a la izquierda: lento</span>
+              </div>
+            </div>
+            <h3>Tarea de Simon</h3>
+            <p>Evalúa cómo la posición de un estímulo interfiere con la respuesta. Aparece una flecha o un color a la izquierda o a la derecha de la pantalla y hay que responder según su significado, no según dónde apareció. Cuando la posición y la respuesta no coinciden, por ejemplo una flecha hacia la derecha que aparece a la izquierda, la respuesta es más lenta. Igual que en el Stroop, hay una característica irrelevante que no podemos ignorar del todo.</p>
+          </article>
+          <article class="card card-verde">
+            <div class="board" style="margin-bottom:1.25rem">
+              <div class="board-words" style="grid-template-columns:1fr;text-align:center">
+                <span><span data-ink="verde">← ← ← ← ←</span></span>
+                <span><span data-ink="rojo">← ← → ← ←</span></span>
+              </div>
+            </div>
+            <h3>Prueba Flanker</h3>
+            <p>Mide la atención selectiva mediante estímulos distractores. Se muestra una flecha central rodeada de otras flechas y hay que indicar hacia dónde apunta la del centro. Si las de los lados apuntan al mismo lado la respuesta es rápida; si apuntan al contrario tardamos más y cometemos más errores. Mide el control de la interferencia como el Stroop, pero sin palabras.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Videos -->
+    <section class="section" id="videos">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--morado)">Videos</span>
+          <h2>Galería para <span class="stroop" data-ink="morado" data-swap data-word="ver">ver</span> el efecto en acción</h2>
+          <p class="lead">Videos, documentales, películas y podcasts acordes al proyecto.</p>
+        </div>
+
+        <h3>Del equipo</h3>
+        <div class="team-media" style="margin-bottom:3rem">
+          <figure class="figure">
+            <div class="video-embed">
+              <iframe src="https://www.youtube-nocookie.com/embed/syYEN3npXLo" title="Podcast 1F" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <figcaption><strong>Podcast 1F</strong> · Podcast del equipo sobre el efecto Stroop.</figcaption>
+          </figure>
+          <figure class="figure">
+            <div class="phone-embed">
+              <iframe src="https://www.tiktok.com/player/v1/7593778533332241686?description=0&music_info=0&rel=0" title="Reto Stroop de @sanxlipp en TikTok" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption><strong>¿Qué color es?</strong> · Reto Stroop de <a href="https://www.tiktok.com/@sanxlipp/video/7593778533332241686" target="_blank" rel="noopener">@sanxlipp</a>.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Videos recomendados</h3>
+        <div class="grid grid-3" style="margin-bottom:3rem">
+          <figure class="figure">
+            <div class="video-embed">
+              <iframe src="https://www.youtube-nocookie.com/embed/S8yE_ZjO7Hw" title="Experimenta en primera persona el efecto Stroop" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <figcaption><strong>Experimenta en primera persona el efecto Stroop</strong> · Psicoactiva</figcaption>
+          </figure>
+          <figure class="figure">
+            <div class="video-embed">
+              <iframe src="https://www.youtube-nocookie.com/embed/8aavRH29980" title="Test de Stroop: ¿qué tan fuerte es tu mente?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <figcaption><strong>Test de Stroop: ¿qué tan fuerte es tu mente?</strong> · MentalTest</figcaption>
+          </figure>
+          <figure class="figure">
+            <div class="video-embed">
+              <iframe src="https://www.youtube-nocookie.com/embed/Lc-bAYZBfJ4" title="La trampa mental que confunde a tu cerebro: el efecto Stroop explicado" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <figcaption><strong>La trampa mental que confunde a tu cerebro</strong> · Neuroconciencia</figcaption>
+          </figure>
+        </div>
+
+        <h3>Documentales y películas</h3>
+        <div class="placeholder">
+          <strong>Pendiente</strong>
+          El equipo definirá la lista de documentales y películas relacionados con la atención y el procesamiento de la información.
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Textos -->
+    <section class="section section-soft" id="textos">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--naranja)">Textos · Textos propios</span>
+          <h2>Un poema, un cómic y una <span class="stroop" data-ink="naranja" data-swap data-word="carta">carta</span></h2>
+          <p class="lead">Tres formas distintas de contar lo mismo: lo que lees y lo que ves no siempre coinciden. Abre cada uno para leerlo completo.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card card-rojo preview">
+            <span class="tag">Poema</span>
+            <h3>Veo <span data-ink="azul">rojo</span>, pero debo decir <span data-ink="rojo">azul</span></h3>
+            <p class="preview-text">Veo el cielo rojo,<br>con mis ojos lo leo,<br>pero mi boca debe decir celeste,<br>aunque ver me cueste.</p>
+            <p class="card-action"><button type="button" class="btn btn-primary" data-open="reader-poema">Leer el poema</button></p>
+          </article>
+          <article class="card card-morado preview">
+            <span class="tag">Cómic</span>
+            <h3>El efecto Stroop en seis viñetas</h3>
+            <button type="button" class="preview-thumb" data-open="reader-comic" aria-label="Ver el cómic completo">
+              <img src="assets/img/comic-efecto-stroop.jpg" alt="" width="1254" height="1254" loading="lazy">
+            </button>
+            <p class="card-action"><button type="button" class="btn btn-primary" data-open="reader-comic">Ver el cómic</button></p>
+          </article>
+          <article class="card card-verde preview">
+            <span class="tag">Carta</span>
+            <h3>Efecto Stroop</h3>
+            <p class="preview-text">¿Alguna vez te has preguntado por qué resulta difícil decir el color de una palabra cuando su significado no coincide con él? Por ejemplo, si ves la palabra <span class="stroop" data-ink="rojo">azul</span> escrita en color rojo, ¿qué dices primero: la palabra o el color?</p>
+            <p class="card-action"><button type="button" class="btn btn-primary" data-open="reader-carta">Leer la carta</button></p>
+          </article>
+        </div>
+
+        <div class="section-head" style="margin-top:4rem">
+          <span class="eyebrow" style="--eyebrow-ink: var(--verde)">Lecturas</span>
+          <h2>Libros, artículos e infografías</h2>
+          <p class="lead">Nuestro artículo y tres lecturas para profundizar en el tema.</p>
+        </div>
+        <div class="grid grid-4">
+          <article class="card card-azul preview">
+            <span class="tag">Artículo propio</span>
+            <h3>¿Qué es el efecto Stroop?</h3>
+            <p class="preview-text">También conocido como interferencia color-palabra, es un fenómeno psicológico que ocurre cuando existe un conflicto entre el significado de una palabra y el color de la tinta con la que está escrita.</p>
+            <p class="card-action"><button type="button" class="btn btn-primary" data-open="reader-articulo">Leer el artículo</button></p>
+          </article>
+          <article class="card card-rojo preview">
+            <span class="tag">Artículo original</span>
+            <h3>Studies of Interference in Serial Verbal Reactions</h3>
+            <p class="preview-text">J. Ridley Stroop, 1935. El artículo donde se describió el efecto por primera vez, en inglés.</p>
+            <p class="card-action"><a class="btn" href="https://psychclassics.yorku.ca/Stroop/" target="_blank" rel="noopener">Abrir</a></p>
+          </article>
+          <article class="card card-morado preview">
+            <span class="tag">Revisión</span>
+            <h3>Half a century of research on the Stroop effect</h3>
+            <p class="preview-text">Colin M. MacLeod, 1991. Psychological Bulletin. La revisión más citada sobre el tema.</p>
+            <p class="card-action"><a class="btn" href="https://doi.org/10.1037/0033-2909.109.2.163" target="_blank" rel="noopener">Abrir</a></p>
+          </article>
+          <article class="card card-amarillo preview">
+            <span class="tag">Divulgación</span>
+            <h3>Efecto Stroop: qué es y cómo se utiliza para diagnosticar</h3>
+            <p class="preview-text">Psicología y Mente. Artículo de divulgación en español.</p>
+            <p class="card-action"><a class="btn" href="https://psicologiaymente.com/psicologia/efecto-stroop" target="_blank" rel="noopener">Abrir</a></p>
+          </article>
+        </div>
+        <div class="placeholder" style="margin-top:1.25rem">
+          <strong>Infografías y libros</strong>
+          Pendiente. El equipo agregará las referencias que elija.
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Sitios de interés -->
+    <section class="section" id="sitios">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--azul)">Sitios de interés</span>
+          <h2>Dónde seguir <span class="stroop" data-ink="azul" data-swap data-word="leyendo">leyendo</span></h2>
+          <p class="lead">Lugares físicos y sitios en la red para consultar publicaciones sobre psicología cognitiva.</p>
+        </div>
+
+        <h3>Bibliotecas</h3>
+        <div class="grid grid-3" style="margin-bottom:3rem">
+          <div class="card card-rojo">
+            <h3>Biblioteca UNICACH</h3>
+            <p>Universidad Autónoma de Ciencias y Artes de Chiapas.<br>Libramiento Norte Poniente 1150, Col. Lajas Maciel, 29018 Tuxtla Gutiérrez, Chiapas.</p>
+            <p class="muted"><strong>Horario:</strong> lunes a viernes de 8:00 a 15:00 h. Sábado y domingo cerrado.</p>
+            <p class="card-action"><a class="btn" href="https://maps.app.goo.gl/YmtbcUex3NamgD6ZA" target="_blank" rel="noopener">Ver en el mapa</a></p>
+          </div>
+          <div class="card card-azul">
+            <h3>Biblioteca UNACH</h3>
+            <p>Universidad Autónoma de Chiapas.<br>Blvd. Doctor Belisario Domínguez km 1081, Terán, Tuxtla Gutiérrez, Chiapas.</p>
+            <p class="muted"><strong>Horario:</strong> lunes a viernes de 8:00 a 20:00 h. Sábado y domingo cerrado.</p>
+            <p class="card-action"><a class="btn" href="https://share.google/Bj5XunBGTZ9jXoojI" target="_blank" rel="noopener">Ver en el mapa</a></p>
+          </div>
+          <div class="card card-verde">
+            <h3>Biblioteca Pública Central Estatal</h3>
+            <p>Centro Cultural Jaime Sabines.<br>12 Oriente Norte 2 y Av. Central, Centro, 29040 Tuxtla Gutiérrez, Chiapas.</p>
+            <p class="muted"><strong>Horario:</strong> lunes a viernes de 8:00 a 19:30 h, sábado de 9:00 a 14:00 h. Domingo cerrado.</p>
+            <p class="card-action"><a class="btn" href="https://share.google/r4bwlt6QFNfL0Zjkx" target="_blank" rel="noopener">Ver en el mapa</a></p>
+          </div>
+        </div>
+
+        <h3>En la red</h3>
+        <div class="grid grid-3">
+          <a class="card card-link card-morado" href="https://dialnet.unirioja.es/" target="_blank" rel="noopener">
+            <h3>Dialnet</h3>
+            <p>Portal de artículos científicos en español. Busca "efecto Stroop" para encontrar estudios de universidades hispanohablantes.</p>
+          </a>
+          <a class="card card-link card-naranja" href="https://scielo.org/es/" target="_blank" rel="noopener">
+            <h3>SciELO</h3>
+            <p>Biblioteca científica de acceso abierto con revistas de psicología de América Latina.</p>
+          </a>
+          <a class="card card-link card-amarillo" href="https://www.psytoolkit.org/experiment-library/stroop.html" target="_blank" rel="noopener">
+            <h3>PsyToolkit</h3>
+            <p>Versión en línea de la tarea Stroop usada en investigación, con explicación y datos descargables.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Animación -->
+    <section class="section section-dark" id="animacion">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--verde); color: rgba(255,255,255,.6)">Animación</span>
+          <h2>Una animación <span class="stroop" data-ink="verde" data-swap data-word="propia">propia</span></h2>
+          <p class="lead">Animación de elaboración propia de al menos un minuto sobre el efecto Stroop.</p>
+        </div>
+        <div class="coming">
+          <strong>En construcción</strong>
+          La animación se incrustará aquí cuando esté terminada.
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Diseño de espacio -->
+    <section class="section section-dark" id="espacio" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--rojo); color: rgba(255,255,255,.6)">Diseño de espacio</span>
+          <h2>Creación grupal <span class="stroop" data-ink="rojo" data-swap data-word="propia">propia</span></h2>
+          <p class="lead">Diseño de un espacio pensado por el equipo para vivir el efecto Stroop.</p>
+        </div>
+        <div class="coming">
+          <strong>En construcción</strong>
+          Aquí irán las imágenes, planos o video del espacio cuando estén listos.
+        </div>
+      </div>
+    </section>
   </main>
+
+  <dialog class="reader" id="reader-poema" aria-labelledby="reader-poema-title">
+    <div class="reader-head">
+      <span class="tag">Poema</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="reader-poema-title" class="reader-title">Veo <span data-ink="azul">rojo</span>, pero debo decir <span data-ink="rojo">azul</span></h2>
+    <div class="poem">Veo el cielo rojo,
+con mis ojos lo leo,
+pero mi boca debe decir celeste,
+aunque ver me cueste.
+
+Veo los árboles grises,
+como aquellos gises,
+la palabra dice VERDE,
+pero la tinta es gris y me pierde.
+
+Me escriben ROJO en color azul,
+me piden que no lea, que mire la luz,
+mi cabeza grita "rojo"
+pero mi voz debe decir "azul".
+
+Muchas personas dicen que es fácil,
+que solo digas el color, no lo que dice,
+pero mi mente se traba, se confunde,
+entre lo que leo y lo que existe.
+
+Veo AMARILLO pintado de verde,
+veo AZUL pintado de rojo,
+y me dicen "estás mal, concéntrate",
+cuando es mi cerebro el que está en enojo.
+
+No es que no vea bien, veo demasiado,
+veo la palabra y veo su disfraz,
+veo dos verdades peleando en mi cabeza,
+y tengo que elegir cuál soltar.
+
+Esto es el Stroop, me dijeron,
+no estás mal, es tu cerebro humano,
+que lee automático aunque no quiera,
+y lucha contra lo que ve con su mano.
+
+Así que si me tardo, si me equivoco,
+si digo rojo cuando era azul,
+no es que mi cielo esté mal pintado,
+es que mi mente lee antes de ver la luz.</div>
+  </dialog>
+
+  <dialog class="reader reader-wide" id="reader-comic" aria-labelledby="reader-comic-title">
+    <div class="reader-head">
+      <span class="tag">Cómic</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="reader-comic-title" class="reader-title">El efecto Stroop en seis viñetas</h2>
+    <img src="assets/img/comic-efecto-stroop.jpg" alt="Cómic de siete viñetas: una estudiante explica qué es el efecto Stroop, el experimento original, qué pasa en el cerebro, un ejemplo de la prueba, qué sucede cuando el color y la palabra no coinciden y por qué es importante" width="1254" height="1254" style="border-radius:16px" loading="lazy">
+    <p class="muted" style="margin:1rem 0 0">No es solo una prueba, es una ventana a cómo funciona nuestra mente.</p>
+  </dialog>
+
+  <dialog class="reader" id="reader-carta" aria-labelledby="reader-carta-title">
+    <div class="reader-head">
+      <span class="tag">Carta</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="reader-carta-title" class="reader-title">Efecto Stroop</h2>
+    <div class="letter">
+      <p>¿Alguna vez te has preguntado por qué resulta difícil decir el color de una palabra cuando su significado no coincide con él? Por ejemplo, si ves la palabra <span class="stroop" data-ink="rojo">azul</span> escrita en color rojo, ¿qué dices primero: la palabra o el color? ¡Esto es más complicado de lo que parece!</p>
+      <p>Este fenómeno se conoce como el efecto Stroop, descubierto por el psicólogo estadounidense John Ridley Stroop, quien publicó su investigación en 1935. Este efecto demuestra cómo la lectura automática puede interferir con nuestra capacidad para identificar el color de la tinta.</p>
+      <p>Nosotras somos estudiantes de la Universidad Autónoma de Ciencias y Artes de Chiapas, de la Facultad de Psicología. Debido a un proyecto nos interesó comprender cómo funciona la mente humana y cómo procesos como la atención y la percepción influyen en nuestra conducta.</p>
+      <p>A través de este proyecto, queremos compartir nuestros conocimientos sobre el efecto Stroop, explicar por qué ocurre y mostrar cómo un experimento sencillo puede ayudarnos a comprender mejor el funcionamiento de nuestro cerebro.</p>
+      <p>¡Te invitamos a explorar nuestra página, poner a prueba tu atención y descubrir que no siempre es tan fácil como parece!</p>
+    </div>
+  </dialog>
+
+  <dialog class="reader" id="reader-articulo" aria-labelledby="reader-articulo-title">
+    <div class="reader-head">
+      <span class="tag">Artículo propio</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="reader-articulo-title" class="reader-title">¿Qué es el efecto Stroop?</h2>
+    <div class="letter">
+      <p>El efecto Stroop, también conocido como interferencia color-palabra, es un fenómeno psicológico que ocurre cuando existe un conflicto entre el significado de una palabra y el color de la tinta con la que está escrita. Fue descrito por el psicólogo estadounidense John Ridley Stroop en 1935.</p>
+      <p>Este fenómeno se produce porque la lectura es un proceso que realizamos de manera automática, por lo que, en ocasiones, leer una palabra puede interferir con nuestra capacidad para identificar el color de la tinta. Esto provoca que tardemos más tiempo en responder y que podamos cometer errores.</p>
+      <p>Por ejemplo, si vemos la palabra <span class="stroop" data-ink="azul">rojo</span> escrita con tinta azul, nuestro cerebro reconoce automáticamente la palabra, pero la tarea consiste en decir el color de la tinta, es decir, "azul". Esta contradicción genera una interferencia que dificulta la respuesta.</p>
+      <p>El efecto Stroop es importante en la psicología porque permite estudiar procesos cognitivos como la atención selectiva y el control inhibitorio, que nos ayudan a concentrarnos en la información relevante e inhibir respuestas automáticas. Por ello, la prueba de Stroop también se utiliza en la evaluación neuropsicológica de funciones ejecutivas.</p>
+      <p>El efecto Stroop demuestra que, aunque leer sea una actividad que realizamos con facilidad, puede interferir con otras tareas que requieren nuestra atención.</p>
+    </div>
+  </dialog>
 
   <footer class="site-footer">
     <div class="container">
       <div><span class="footer-mark"><span data-ink="rojo">No</span> leas, <span data-ink="azul">observa</span></span>Proyecto académico · Facultad de Psicología, UNICACH · 2026</div>
-      <span><a href="about.html">Conoce al equipo</a></span>
+      <span><a href="#inicio">Volver arriba</a></span>
     </div>
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/stroop-test.js"></script>
 </body>
 </html>
