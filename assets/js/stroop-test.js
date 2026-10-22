@@ -294,7 +294,7 @@
     lastResult = { pct: pct, total: total, errors: errors + timeouts };
     if (con.length && inc.length) {
       var hist = loadHistory();
-      hist.push({ t: Date.now(), pct: Math.round(pct * 10) / 10, total: Math.round(total / 100) / 10, errors: errors + timeouts });
+      hist.push({ t: Date.now(), pct: Math.round(Math.max(-200, Math.min(300, pct)) * 10) / 10, total: Math.round(total / 100) / 10, errors: errors + timeouts });
       if (hist.length > 10) hist = hist.slice(-10);
       saveHistory(hist);
       renderHistory(hist);
