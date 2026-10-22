@@ -162,17 +162,23 @@
     voiceStatus.innerHTML = '🎤 Escuchando. ' + (text ? 'Entendí: <strong>' + text + '</strong>' : 'Di el color de la tinta en voz alta.');
   }
 
-  function startVoice() {
-    if (!SR) return;
+  function startVoice(onReady, onFail) {
+    if (!SR) { if (onFail) onFail(); return; }
     stopVoice();
     voiceOn = true;
     heardTokens = [];
     consumed = 0;
+    var settled = false;
     rec = new SR();
     rec.lang = 'es-MX';
     rec.continuous = true;
     rec.interimResults = true;
     rec.maxAlternatives = 3;
+    rec.onstart = function () {
+      if (settled) return;
+      settled = true;
+      if (onReady) onReady();
+    };
     rec.onresult = function (e) {
       var last = e.results[e.results.length - 1];
       showHeard(last && last[0] ? last[0].transcript.trim() : '');
@@ -191,17 +197,18 @@
       }
     };
     rec.onerror = function (ev) {
-      if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
-        voiceStatus.textContent = 'No hay permiso para usar el micrófono. Responde con los botones.';
+      if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed' || ev.error === 'audio-capture') {
         voiceOn = false;
+        if (!settled) { settled = true; if (onFail) onFail('No hay permiso para usar el micrófono. La prueba sigue con botones.'); }
+        else { voiceStatus.hidden = false; voiceStatus.textContent = 'Se perdió el micrófono. Responde con los botones.'; }
       }
     };
     try {
       rec.start();
       showHeard('');
     } catch (err) {
-      voiceStatus.hidden = false;
-      voiceStatus.textContent = 'No se pudo iniciar el micrófono. Responde con los botones.';
+      voiceOn = false;
+      if (!settled) { settled = true; if (onFail) onFail('No se pudo iniciar el micrófono. La prueba sigue con botones.'); }
     }
   }
 
@@ -397,8 +404,7 @@
     }
   }
 
-  function start() {
-    clearAll();
+  function beginTrials(useVoice) {
     phase = 'practice';
     trials = buildTrials(PRACTICE / 2);
     records = [];
@@ -408,10 +414,47 @@
     play.hidden = false;
     timer.textContent = '0:00.0';
     renderChoices();
-    var useVoice = !!(voiceCheck && voiceCheck.checked && SR);
     TRIAL_LIMIT = useVoice ? TRIAL_LIMIT_VOICE : TRIAL_LIMIT_BUTTONS;
-    if (useVoice) startVoice();
     showTrial();
+  }
+
+  var waitEl = root.querySelector('.test-voice-wait');
+  var waiting = false;
+
+  function start() {
+    clearAll();
+    results.hidden = true;
+    play.hidden = true;
+    intro.hidden = false;
+    var useVoice = !!(voiceCheck && voiceCheck.checked && SR);
+    if (!useVoice) { beginTrials(false); return; }
+    if (waiting) return;
+    waiting = true;
+    if (waitEl) { waitEl.hidden = false; waitEl.querySelector('span').textContent = 'Esperando el permiso del micrófono. Acepta la solicitud del navegador para empezar.'; }
+    startBtn.disabled = true;
+    startVoice(function () {
+      waiting = false;
+      startBtn.disabled = false;
+      if (waitEl) waitEl.hidden = true;
+      beginTrials(true);
+    }, function (msg) {
+      waiting = false;
+      startBtn.disabled = false;
+      stopVoice();
+      if (voiceCheck) voiceCheck.checked = false;
+      if (waitEl) { waitEl.hidden = false; waitEl.querySelector('span').textContent = msg + ' Pulsa "Empezar" de nuevo.'; }
+    });
+  }
+
+  if (waitEl) {
+    waitEl.querySelector('button').addEventListener('click', function () {
+      waiting = false;
+      startBtn.disabled = false;
+      stopVoice();
+      if (voiceCheck) voiceCheck.checked = false;
+      waitEl.hidden = true;
+      beginTrials(false);
+    });
   }
 
   function shareText() {

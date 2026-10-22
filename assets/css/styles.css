@@ -347,6 +347,7 @@ section[id] { scroll-margin-top: 72px; }
 .test-voice { display: flex; gap: .6rem; align-items: flex-start; margin: 0 0 1.25rem; font-size: .95rem; color: var(--muted); cursor: pointer; }
 .test-voice input { margin-top: .35rem; accent-color: var(--azul); }
 .voice-status { text-align: center; margin: .75rem 0 0; font-size: .9rem; }
+.test-voice-wait { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; font-size: .95rem; margin: 0; }
 .test-history { margin: 1.5rem 0; padding: 1.25rem; background: var(--surface); border-radius: 18px; }
 .section-soft .test-history { background: var(--soft); }
 .test-history h4 { margin: 0 0 1rem; font-size: 1rem; }
