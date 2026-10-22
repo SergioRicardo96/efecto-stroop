@@ -20,6 +20,25 @@
     });
   }
 
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    var root = document.documentElement;
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+    var current = function () {
+      return root.getAttribute('data-theme') || (media.matches ? 'dark' : 'light');
+    };
+    var label = function () {
+      themeBtn.setAttribute('aria-label', current() === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+    };
+    themeBtn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      label();
+    });
+    label();
+  }
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var swappers = document.querySelectorAll('[data-swap]');
