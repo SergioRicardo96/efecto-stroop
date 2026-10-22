@@ -11,6 +11,7 @@
   var TRIALS_PER_TYPE = 12;
   var TRIAL_LIMIT = 3000;
   var STROOP_1935 = 74.3;
+  var HISTORY_KEY = 'stroop-history';
 
   var intro = root.querySelector('.test-intro');
   var play = root.querySelector('.test-play');
@@ -26,6 +27,15 @@
   var startBtn = root.querySelector('.test-start');
   var resetBtn = root.querySelector('.test-reset');
   var restartBtns = root.querySelectorAll('.test-restart');
+  var voiceWrap = root.querySelector('.test-voice');
+  var voiceCheck = root.querySelector('#voice-mode');
+  var voiceStatus = root.querySelector('.voice-status');
+  var historyBox = root.querySelector('.test-history');
+  var shareBtn = root.querySelector('.test-share');
+  var clearBtn = root.querySelector('.test-clear-history');
+
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR && voiceWrap) voiceWrap.hidden = true;
 
   var trials = [];
   var index = 0;
@@ -36,6 +46,10 @@
   var ticker = null;
   var trialTicker = null;
   var nextTimer = null;
+  var rec = null;
+  var voiceOn = false;
+  var handledUpTo = 0;
+  var lastResult = null;
 
   function shuffle(arr) {
     for (var i = arr.length - 1; i > 0; i--) {
@@ -95,10 +109,62 @@
     }, 50);
   }
 
+  /* Modo voz */
+  function detectColor(text) {
+    var t = text.toLowerCase();
+    if (/roj/.test(t)) return 'rojo';
+    if (/azul/.test(t)) return 'azul';
+    if (/verd/.test(t)) return 'verde';
+    if (/amarill/.test(t)) return 'amarillo';
+    return null;
+  }
+
+  function startVoice() {
+    if (!SR) return;
+    stopVoice();
+    voiceOn = true;
+    handledUpTo = 0;
+    rec = new SR();
+    rec.lang = 'es-MX';
+    rec.continuous = true;
+    rec.interimResults = true;
+    rec.onresult = function (e) {
+      for (var i = e.resultIndex; i < e.results.length; i++) {
+        if (i < handledUpTo) continue;
+        var key = detectColor(e.results[i][0].transcript);
+        if (key) { handledUpTo = i + 1; answer(key); break; }
+      }
+    };
+    rec.onend = function () {
+      if (voiceOn && !play.hidden) { handledUpTo = 0; try { rec.start(); } catch (err) {} }
+    };
+    rec.onerror = function (ev) {
+      if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
+        voiceStatus.textContent = 'No hay permiso para usar el micrófono. Responde con los botones.';
+        voiceOn = false;
+      }
+    };
+    try {
+      rec.start();
+      voiceStatus.hidden = false;
+      voiceStatus.textContent = '🎤 Escuchando: di el color de la tinta en voz alta.';
+    } catch (err) {
+      voiceStatus.hidden = false;
+      voiceStatus.textContent = 'No se pudo iniciar el micrófono. Responde con los botones.';
+    }
+  }
+
+  function stopVoice() {
+    voiceOn = false;
+    if (rec) { rec.onend = null; try { rec.stop(); } catch (e) {} rec = null; }
+    if (voiceStatus) voiceStatus.hidden = true;
+  }
+
   function clearAll() {
     clearInterval(ticker);
     stopTrialClock();
     clearTimeout(nextTimer);
+    stopVoice();
   }
 
   function renderChoices() {
@@ -134,7 +200,7 @@
   }
 
   function answer(key) {
-    if (locked) return;
+    if (locked || play.hidden) return;
     locked = true;
     stopTrialClock();
     var t = trials[index];
@@ -162,8 +228,38 @@
     return list.reduce(function (s, r) { return s + r.rt; }, 0) / list.length;
   }
 
+  /* Historial */
+  function loadHistory() {
+    try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch (e) { return []; }
+  }
+  function saveHistory(list) {
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  function renderHistory(list) {
+    if (!historyBox) return;
+    var bars = historyBox.querySelector('.history-bars');
+    var note = historyBox.querySelector('.history-note');
+    if (!list.length) { historyBox.hidden = true; return; }
+    historyBox.hidden = false;
+    var max = Math.max(10, Math.max.apply(null, list.map(function (h) { return Math.abs(h.pct); })));
+    bars.innerHTML = '';
+    list.forEach(function (h, i) {
+      var item = document.createElement('div');
+      item.className = 'history-bar' + (i === list.length - 1 ? ' is-last' : '');
+      var hgt = Math.max(6, Math.abs(h.pct) / max * 100);
+      item.innerHTML = '<span class="history-val">' + (h.pct >= 0 ? '+' : '') + h.pct.toFixed(0) + ' %</span><i style="height:' + hgt + '%"></i><span class="history-lbl">' + (i + 1) + '</span>';
+      bars.appendChild(item);
+    });
+    var bestIdx = 0;
+    list.forEach(function (h, i) { if (h.pct < list[bestIdx].pct) bestIdx = i; });
+    note.textContent = list.length === 1
+      ? 'Primer intento guardado en este navegador. Repite la prueba para comparar.'
+      : 'Intentos guardados: ' + list.length + '. Tu menor interferencia fue en el intento ' + (bestIdx + 1) + ' (' + (list[bestIdx].pct >= 0 ? '+' : '') + list[bestIdx].pct.toFixed(1) + ' %).';
+  }
+
   function finish() {
     var total = stopClock();
+    stopVoice();
     bar.style.width = '100%';
     play.hidden = true;
     results.hidden = false;
@@ -194,6 +290,17 @@
       msg = 'Esta vez casi no se notó la interferencia. Suele aparecer con más claridad al repetir la prueba o al responder más rápido.';
     }
     results.querySelector('.test-summary').textContent = msg;
+
+    lastResult = { pct: pct, total: total, errors: errors + timeouts };
+    if (con.length && inc.length) {
+      var hist = loadHistory();
+      hist.push({ t: Date.now(), pct: Math.round(pct * 10) / 10, total: Math.round(total / 100) / 10, errors: errors + timeouts });
+      if (hist.length > 10) hist = hist.slice(-10);
+      saveHistory(hist);
+      renderHistory(hist);
+    } else {
+      renderHistory(loadHistory());
+    }
   }
 
   function start() {
@@ -206,7 +313,41 @@
     play.hidden = false;
     renderChoices();
     startClock();
+    if (voiceCheck && voiceCheck.checked && SR) startVoice();
     showTrial();
+  }
+
+  function shareText() {
+    if (!lastResult) return '';
+    var url = location.href.split('#')[0] + '#prueba';
+    return 'Hice la prueba del efecto Stroop en "No leas, ¡observa!": ' + (lastResult.pct >= 0 ? '+' : '') + lastResult.pct.toFixed(1) +
+      ' % de interferencia, ' + (lastResult.total / 1000).toFixed(1) + ' s en total y ' + lastResult.errors + ' fallos. ¿Puedes hacerlo mejor? ' + url;
+  }
+
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function () {
+      var text = shareText();
+      if (!text) return;
+      var done = function (label) {
+        var old = shareBtn.textContent;
+        shareBtn.textContent = label;
+        setTimeout(function () { shareBtn.textContent = old; }, 2000);
+      };
+      if (navigator.share) {
+        navigator.share({ text: text }).then(function () { done('Compartido'); }).catch(function () {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () { done('Copiado al portapapeles'); });
+      } else {
+        window.prompt('Copia tu resultado:', text);
+      }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      saveHistory([]);
+      renderHistory([]);
+    });
   }
 
   startBtn.addEventListener('click', start);

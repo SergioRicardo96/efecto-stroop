@@ -85,6 +85,7 @@
   var swappers = document.querySelectorAll('[data-swap]');
   if (swappers.length && !reduced) {
     setInterval(function () {
+      if (document.body.classList.contains('challenge-on')) return;
       swappers.forEach(function (el) {
         var word = (el.getAttribute('data-word') || el.textContent).trim().toLowerCase();
         el.setAttribute('data-ink', pickIncongruent(word, el.getAttribute('data-ink')));

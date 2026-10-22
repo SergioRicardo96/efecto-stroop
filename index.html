@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <link rel="stylesheet" href="assets/css/styles.css?v=8">
 </head>
 <body>
   <a class="skip" href="#inicio">Ir al contenido</a>
@@ -70,6 +70,7 @@
             <span data-ink="rojo" data-swap>Verde</span>
           </div>
           <p class="stroop-board-caption">Las tintas cambian cada pocos segundos. Nunca coinciden con la palabra.</p>
+          <p class="challenge-row"><button type="button" class="btn btn-small challenge-btn">Reto de 10 segundos</button></p>
         </div>
       </div>
     </section>
@@ -325,6 +326,7 @@
               <li>Tienes <strong>3 segundos por palabra</strong>. Si no respondes a tiempo, cuenta como error.</li>
               <li>Son 24 palabras y toma menos de un minuto. Puedes reiniciar cuando quieras.</li>
             </ul>
+            <label class="test-voice"><input type="checkbox" id="voice-mode"> Responder con la voz: di el color en voz alta, como en el experimento original (necesita micrófono).</label>
             <p><button type="button" class="btn btn-primary test-start">Empezar</button></p>
           </div>
 
@@ -341,6 +343,7 @@
             </div>
             <div class="test-choices" aria-label="Elige el color de la tinta"></div>
             <div class="test-feedback" aria-live="polite"></div>
+            <p class="voice-status muted" hidden></p>
           </div>
 
           <div class="test-results" hidden>
@@ -357,7 +360,16 @@
               </tbody>
             </table>
             <p class="test-summary"></p>
-            <p><button type="button" class="btn test-restart">Repetir la prueba</button></p>
+            <div class="test-history" hidden>
+              <h4>Tus intentos en este navegador</h4>
+              <div class="history-bars" aria-label="Interferencia por intento"></div>
+              <p class="history-note muted"></p>
+            </div>
+            <p class="test-actions">
+              <button type="button" class="btn btn-primary test-restart">Repetir la prueba</button>
+              <button type="button" class="btn test-share">Compartir resultado</button>
+              <button type="button" class="btn btn-small test-clear-history">Borrar historial</button>
+            </p>
           </div>
         </div>
       </div>
@@ -390,6 +402,7 @@
             </div>
             <h3>Tarea de Simon</h3>
             <p>Evalúa cómo la posición de un estímulo interfiere con la respuesta. Aparece una flecha o un color a la izquierda o a la derecha de la pantalla y hay que responder según su significado, no según dónde apareció. Cuando la posición y la respuesta no coinciden, por ejemplo una flecha hacia la derecha que aparece a la izquierda, la respuesta es más lenta. Igual que en el Stroop, hay una característica irrelevante que no podemos ignorar del todo.</p>
+            <p class="card-action"><button type="button" class="btn" data-open="mini-simon">Probar la tarea de Simon</button></p>
           </article>
           <article class="card card-verde">
             <div class="board" style="margin-bottom:1.25rem">
@@ -400,7 +413,26 @@
             </div>
             <h3>Prueba Flanker</h3>
             <p>Mide la atención selectiva mediante estímulos distractores. Se muestra una flecha central rodeada de otras flechas y hay que indicar hacia dónde apunta la del centro. Si las de los lados apuntan al mismo lado la respuesta es rápida; si apuntan al contrario tardamos más y cometemos más errores. Mide el control de la interferencia como el Stroop, pero sin palabras.</p>
+            <p class="card-action"><button type="button" class="btn" data-open="mini-flanker">Probar la prueba Flanker</button></p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="quiz">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" style="--eyebrow-ink: var(--amarillo)">Quiz</span>
+          <h2>¿Qué tanto <span class="stroop" data-ink="azul" data-swap data-word="aprendiste">aprendiste</span>?</h2>
+          <p class="lead">Cinco preguntas rápidas sobre el experimento. Cada respuesta se corrige al instante.</p>
+        </div>
+        <div data-quiz>
+          <div class="quiz-list grid grid-2"></div>
+          <div class="quiz-score card card-verde" hidden>
+            <h3>Tu puntaje: <strong></strong></h3>
+            <p><span></span></p>
+            <p class="card-action"><button type="button" class="btn quiz-reset">Volver a intentar</button></p>
+          </div>
         </div>
       </div>
     </section>
@@ -697,6 +729,72 @@ es que mi mente lee antes de ver la luz.</div>
     </div>
   </dialog>
 
+  <dialog class="reader" id="mini-simon" aria-labelledby="mini-simon-title">
+    <div class="reader-head">
+      <span class="tag">Demo</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="mini-simon-title" class="reader-title">Tarea de Simon</h2>
+    <div class="mini" data-mini="simon">
+      <div class="mini-intro">
+        <p>Aparecerá una flecha a la izquierda o a la derecha del recuadro. Responde hacia dónde <strong>apunta</strong>, sin importar de qué lado aparezca. Son 8 intentos.</p>
+        <p><button type="button" class="btn btn-primary mini-start">Empezar</button></p>
+      </div>
+      <div class="mini-play" hidden>
+        <div class="test-top"><span>Intento <strong class="mini-counter">1 / 8</strong></span><span>Usa los botones o las flechas del teclado</span></div>
+        <div class="mini-stage"></div>
+        <div class="mini-choices"></div>
+        <div class="test-feedback mini-feedback" aria-live="polite"></div>
+      </div>
+      <div class="mini-results" hidden>
+        <h3>Tus resultados</h3>
+        <table class="mini-table">
+          <tbody>
+            <tr><th>Promedio, intentos congruentes</th><td data-out="con"></td></tr>
+            <tr><th>Promedio, intentos incongruentes</th><td data-out="inc"></td></tr>
+            <tr><th>Diferencia</th><td data-out="diff"></td></tr>
+            <tr><th>Errores</th><td data-out="errors"></td></tr>
+          </tbody>
+        </table>
+        <p class="mini-summary"></p>
+        <p><button type="button" class="btn mini-start">Repetir</button></p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="reader" id="mini-flanker" aria-labelledby="mini-flanker-title">
+    <div class="reader-head">
+      <span class="tag">Demo</span>
+      <button type="button" class="reader-close" data-close aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 id="mini-flanker-title" class="reader-title">Prueba Flanker</h2>
+    <div class="mini" data-mini="flanker">
+      <div class="mini-intro">
+        <p>Verás cinco flechas. Responde hacia dónde apunta la flecha <strong>del centro</strong> e ignora las de los lados. Son 8 intentos.</p>
+        <p><button type="button" class="btn btn-primary mini-start">Empezar</button></p>
+      </div>
+      <div class="mini-play" hidden>
+        <div class="test-top"><span>Intento <strong class="mini-counter">1 / 8</strong></span><span>Usa los botones o las flechas del teclado</span></div>
+        <div class="mini-stage"></div>
+        <div class="mini-choices"></div>
+        <div class="test-feedback mini-feedback" aria-live="polite"></div>
+      </div>
+      <div class="mini-results" hidden>
+        <h3>Tus resultados</h3>
+        <table class="mini-table">
+          <tbody>
+            <tr><th>Promedio, intentos congruentes</th><td data-out="con"></td></tr>
+            <tr><th>Promedio, intentos incongruentes</th><td data-out="inc"></td></tr>
+            <tr><th>Diferencia</th><td data-out="diff"></td></tr>
+            <tr><th>Errores</th><td data-out="errors"></td></tr>
+          </tbody>
+        </table>
+        <p class="mini-summary"></p>
+        <p><button type="button" class="btn mini-start">Repetir</button></p>
+      </div>
+    </div>
+  </dialog>
+
   <footer class="site-footer">
     <div class="container">
       <div><span class="footer-mark"><span data-ink="rojo">No</span> leas, <span data-ink="azul">observa</span></span>Proyecto académico · Facultad de Psicología, UNICACH · 2026</div>
@@ -704,7 +802,8 @@ es que mi mente lee antes de ver la luz.</div>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=7"></script>
-  <script src="assets/js/stroop-test.js?v=5"></script>
+  <script src="assets/js/main.js?v=8"></script>
+  <script src="assets/js/stroop-test.js?v=8"></script>
+  <script src="assets/js/interactive.js?v=8"></script>
 </body>
 </html>
