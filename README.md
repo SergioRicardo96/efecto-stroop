@@ -17,6 +17,12 @@ Una sola página (`index.html`) con ocho secciones y menú de anclas:
 | `#animacion` | Animación |
 | `#espacio` | Diseño de espacio |
 
+## Notas
+
+- Las tipografías están en `assets/fonts` (Plus Jakarta Sans y Rubik como fuentes variables), así que el sitio se ve igual sin internet. Solo los videos de YouTube y TikTok necesitan conexión.
+- Las etiquetas Open Graph apuntan a `https://sergioricardo96.github.io/efecto-stroop/`; si el sitio se publica en otra dirección hay que cambiar `og:url` y `og:image` en `index.html`.
+- El logo (ojo con iris de cuatro tintas) está en `assets/img/icon.svg` y en PNG de 32, 180 y 512 px; la imagen para compartir es `assets/img/og.png`.
+
 ## Ver en local
 
 ```bash

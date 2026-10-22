@@ -382,6 +382,16 @@ section[id] { scroll-margin-top: 72px; }
 .quiz-score { margin-top: 1.25rem; }
 .quiz-score h3 strong { color: var(--verde); }
 
+/* Logo, videos sin conexión y práctica */
+.brand .logo { width: 28px; height: 28px; border-radius: 7px; flex: none; align-self: center; }
+.video-embed, .phone-embed { background: #1a1a21; }
+.video-offline { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; text-align: center; color: rgba(255,255,255,.55); font-size: .9rem; }
+.video-embed iframe, .phone-embed iframe { z-index: 1; }
+.test-phase { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 999px; background: var(--amarillo); color: #0e0e11; margin-left: .5rem; vertical-align: middle; }
+.test-interlude { font-family: var(--display); font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--fg); }
+.test-context { margin-top: 1rem; padding: 1rem 1.25rem; border-left: 4px solid var(--azul); border-radius: 0; background: var(--surface); }
+.section-soft .test-context { background: var(--soft); }
+
 /* Aparición al hacer scroll */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }

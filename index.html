@@ -7,17 +7,27 @@
   <meta name="description" content="Descubre cómo la atención, la percepción y la lectura automática ponen a prueba nuestro cerebro. Proyecto académico de la Facultad de Psicología, UNICACH.">
   <meta name="theme-color" content="#0e0e11">
   <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230e0e11%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-family=%27Arial Black,Arial%27 font-weight=%27900%27 font-size=%2738%27 text-anchor=%27middle%27 fill=%27%232f6bff%27%3ES%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=8">
+  <link rel="icon" type="image/svg+xml" href="assets/img/icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="No leas, ¡observa!: el efecto Stroop">
+  <meta property="og:description" content="Descubre cómo la atención, la percepción y la lectura automática ponen a prueba nuestro cerebro. Haz la prueba y mide tu interferencia.">
+  <meta property="og:url" content="https://sergioricardo96.github.io/efecto-stroop/">
+  <meta property="og:image" content="https://sergioricardo96.github.io/efecto-stroop/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_MX">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=9">
 </head>
 <body>
   <a class="skip" href="#inicio">Ir al contenido</a>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#inicio" aria-label="Inicio: No leas, observa">
+        <img class="logo" src="assets/img/icon.svg" alt="" width="28" height="28">
         <span class="mark"><span data-ink="azul">St</span><span data-ink="rojo">ro</span><span data-ink="verde">op</span></span>
         <small>No leas, ¡observa!</small>
       </a>
@@ -324,7 +334,7 @@
               <li>Elige el <strong>color de la tinta</strong>, no lo que dice la palabra.</li>
               <li>Responde lo más rápido que puedas con los botones o con las teclas 1 a 4.</li>
               <li>Tienes <strong>3 segundos por palabra</strong>. Si no respondes a tiempo, cuenta como error.</li>
-              <li>Son 24 palabras y toma menos de un minuto. Puedes reiniciar cuando quieras.</li>
+              <li>Primero hay <strong>4 palabras de práctica</strong> que no cuentan; luego las 24 de verdad. Puedes reiniciar cuando quieras.</li>
             </ul>
             <label class="test-voice"><input type="checkbox" id="voice-mode"> Responder con la voz: di el color en voz alta, como en el experimento original (necesita micrófono).</label>
             <p><button type="button" class="btn btn-primary test-start">Empezar</button></p>
@@ -332,7 +342,7 @@
 
           <div class="test-play" hidden>
             <div class="test-top">
-              <span>Palabra <strong class="test-counter">1 / 24</strong></span>
+              <span>Palabra <strong class="test-counter">1 / 24</strong><span class="test-phase" hidden>Práctica</span></span>
               <span class="test-timer" aria-label="Cronómetro"><strong>0:00.0</strong></span>
               <button type="button" class="btn btn-small test-reset">Reiniciar</button>
             </div>
@@ -360,6 +370,7 @@
               </tbody>
             </table>
             <p class="test-summary"></p>
+            <p class="test-context muted" hidden></p>
             <div class="test-history" hidden>
               <h4>Tus intentos en este navegador</h4>
               <div class="history-bars" aria-label="Interferencia por intento"></div>
@@ -450,12 +461,14 @@
         <div class="team-media" style="margin-bottom:3rem">
           <figure class="figure">
             <div class="video-embed">
+              <span class="video-offline">Este video necesita conexión a internet.</span>
               <iframe src="https://www.youtube-nocookie.com/embed/syYEN3npXLo" title="Podcast 1F" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <figcaption><strong>Podcast 1F</strong> · Podcast del equipo sobre el efecto Stroop.</figcaption>
           </figure>
           <figure class="figure">
             <div class="phone-embed">
+              <span class="video-offline">Este video necesita conexión a internet.</span>
               <iframe src="https://www.tiktok.com/player/v1/7593778533332241686?description=0&music_info=0&rel=0" title="Reto Stroop de @sanxlipp en TikTok" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <figcaption><strong>¿Qué color es?</strong> · Reto Stroop de <a href="https://www.tiktok.com/@sanxlipp/video/7593778533332241686" target="_blank" rel="noopener">@sanxlipp</a>.</figcaption>
@@ -466,18 +479,21 @@
         <div class="grid grid-3" style="margin-bottom:3rem">
           <figure class="figure">
             <div class="video-embed">
+              <span class="video-offline">Este video necesita conexión a internet.</span>
               <iframe src="https://www.youtube-nocookie.com/embed/S8yE_ZjO7Hw" title="Experimenta en primera persona el efecto Stroop" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <figcaption><strong>Experimenta en primera persona el efecto Stroop</strong> · Psicoactiva</figcaption>
           </figure>
           <figure class="figure">
             <div class="video-embed">
+              <span class="video-offline">Este video necesita conexión a internet.</span>
               <iframe src="https://www.youtube-nocookie.com/embed/8aavRH29980" title="Test de Stroop: ¿qué tan fuerte es tu mente?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <figcaption><strong>Test de Stroop: ¿qué tan fuerte es tu mente?</strong> · MentalTest</figcaption>
           </figure>
           <figure class="figure">
             <div class="video-embed">
+              <span class="video-offline">Este video necesita conexión a internet.</span>
               <iframe src="https://www.youtube-nocookie.com/embed/Lc-bAYZBfJ4" title="La trampa mental que confunde a tu cerebro: el efecto Stroop explicado" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <figcaption><strong>La trampa mental que confunde a tu cerebro</strong> · Neuroconciencia</figcaption>
@@ -802,8 +818,8 @@ es que mi mente lee antes de ver la luz.</div>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=8"></script>
-  <script src="assets/js/stroop-test.js?v=8"></script>
-  <script src="assets/js/interactive.js?v=8"></script>
+  <script src="assets/js/main.js?v=9"></script>
+  <script src="assets/js/stroop-test.js?v=9"></script>
+  <script src="assets/js/interactive.js?v=9"></script>
 </body>
 </html>

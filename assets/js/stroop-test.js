@@ -9,17 +9,21 @@
     { key: 'amarillo', label: 'Amarillo' }
   ];
   var TRIALS_PER_TYPE = 12;
+  var PRACTICE = 4;
   var TRIAL_LIMIT = 3000;
   var STROOP_1935 = 74.3;
+  var TYPICAL_LOW = 20, TYPICAL_HIGH = 60;
   var HISTORY_KEY = 'stroop-history';
 
   var intro = root.querySelector('.test-intro');
   var play = root.querySelector('.test-play');
   var results = root.querySelector('.test-results');
+  var stageEl = root.querySelector('.test-stage');
   var word = root.querySelector('.test-word');
   var choices = root.querySelector('.test-choices');
   var feedback = root.querySelector('.test-feedback');
   var counter = root.querySelector('.test-counter');
+  var phaseTag = root.querySelector('.test-phase');
   var bar = root.querySelector('.progress i');
   var timer = root.querySelector('.test-timer strong');
   var trialBar = root.querySelector('.trial-bar');
@@ -31,6 +35,7 @@
   var voiceCheck = root.querySelector('#voice-mode');
   var voiceStatus = root.querySelector('.voice-status');
   var historyBox = root.querySelector('.test-history');
+  var contextEl = root.querySelector('.test-context');
   var shareBtn = root.querySelector('.test-share');
   var clearBtn = root.querySelector('.test-clear-history');
 
@@ -38,6 +43,7 @@
   if (!SR && voiceWrap) voiceWrap.hidden = true;
 
   var trials = [];
+  var phase = 'practice';
   var index = 0;
   var shownAt = 0;
   var locked = false;
@@ -59,13 +65,18 @@
     return arr;
   }
 
-  function buildTrials() {
+  function makeTrial(c, congruent) {
+    if (congruent) return { word: c, ink: c, congruent: true };
+    var others = COLORS.filter(function (x) { return x.key !== c.key; });
+    return { word: c, ink: others[Math.floor(Math.random() * others.length)], congruent: false };
+  }
+
+  function buildTrials(perType) {
     var list = [];
-    for (var i = 0; i < TRIALS_PER_TYPE; i++) {
+    for (var i = 0; i < perType; i++) {
       var c = COLORS[i % COLORS.length];
-      list.push({ word: c, ink: c, congruent: true });
-      var others = COLORS.filter(function (x) { return x.key !== c.key; });
-      list.push({ word: c, ink: others[Math.floor(Math.random() * others.length)], congruent: false });
+      list.push(makeTrial(c, true));
+      list.push(makeTrial(c, false));
     }
     return shuffle(list);
   }
@@ -181,21 +192,50 @@
 
   function showTrial() {
     var t = trials[index];
+    word.hidden = false;
+    var interlude = stageEl.querySelector('.test-interlude');
+    if (interlude) interlude.remove();
     word.textContent = t.word.label;
     word.setAttribute('data-ink', t.ink.key);
     counter.textContent = (index + 1) + ' / ' + trials.length;
-    bar.style.width = (index / trials.length * 100) + '%';
+    phaseTag.hidden = phase !== 'practice';
+    bar.style.width = phase === 'practice' ? '0%' : (index / trials.length * 100) + '%';
     feedback.textContent = '';
     locked = false;
     shownAt = performance.now();
     startTrialClock();
   }
 
+  function beginReal() {
+    phase = 'real';
+    trials = buildTrials(TRIALS_PER_TYPE);
+    records = [];
+    index = 0;
+    startClock();
+    showTrial();
+  }
+
+  function interlude() {
+    stopTrialClock();
+    locked = true;
+    word.hidden = true;
+    feedback.textContent = '';
+    trialFill.style.transform = 'scaleX(0)';
+    var msg = document.createElement('div');
+    msg.className = 'test-interlude';
+    msg.textContent = 'Fin de la práctica. Ahora las 24 de verdad: arranca el cronómetro.';
+    stageEl.insertBefore(msg, word);
+    clearTimeout(nextTimer);
+    nextTimer = setTimeout(beginReal, 1800);
+  }
+
   function advance(delay) {
     index++;
     clearTimeout(nextTimer);
     nextTimer = setTimeout(function () {
-      if (index < trials.length) showTrial(); else finish();
+      if (index < trials.length) showTrial();
+      else if (phase === 'practice') interlude();
+      else finish();
     }, delay);
   }
 
@@ -206,7 +246,7 @@
     var t = trials[index];
     var rt = performance.now() - shownAt;
     var ok = key === t.ink.key;
-    records.push({ congruent: t.congruent, rt: rt, correct: ok, timeout: false });
+    if (phase === 'real') records.push({ congruent: t.congruent, rt: rt, correct: ok, timeout: false });
     feedback.textContent = ok ? '✓ Correcto' : '✗ La tinta era ' + t.ink.label.toLowerCase();
     feedback.style.color = ok ? 'var(--verde)' : 'var(--rojo)';
     advance(ok ? 300 : 700);
@@ -217,7 +257,7 @@
     locked = true;
     stopTrialClock();
     var t = trials[index];
-    records.push({ congruent: t.congruent, rt: TRIAL_LIMIT, correct: false, timeout: true });
+    if (phase === 'real') records.push({ congruent: t.congruent, rt: TRIAL_LIMIT, correct: false, timeout: true });
     feedback.textContent = '⏱ Se acabó el tiempo. La tinta era ' + t.ink.label.toLowerCase();
     feedback.style.color = 'var(--rojo)';
     advance(900);
@@ -257,6 +297,13 @@
       : 'Intentos guardados: ' + list.length + '. Tu menor interferencia fue en el intento ' + (bestIdx + 1) + ' (' + (list[bestIdx].pct >= 0 ? '+' : '') + list[bestIdx].pct.toFixed(1) + ' %).';
   }
 
+  function contextText(pct) {
+    var base = 'Como referencia, la mayoría de las personas obtiene entre ' + TYPICAL_LOW + ' % y ' + TYPICAL_HIGH + ' % de interferencia en una prueba como esta. ';
+    if (pct < TYPICAL_LOW) return base + 'Tú quedaste por debajo de ese rango: la lectura te interfirió poco esta vez.';
+    if (pct <= TYPICAL_HIGH) return base + 'Tú quedaste dentro de ese rango: una interferencia típica.';
+    return base + 'Tú quedaste por encima de ese rango: la lectura automática te interfirió más de lo habitual, como a los participantes de 1935.';
+  }
+
   function finish() {
     var total = stopClock();
     stopVoice();
@@ -281,8 +328,9 @@
     results.querySelector('[data-out="errors"]').textContent = errors + ' de ' + records.length;
     results.querySelector('[data-out="timeouts"]').textContent = timeouts + ' de ' + records.length;
 
+    var comparable = con.length > 0 && inc.length > 0;
     var msg;
-    if (!con.length || !inc.length) {
+    if (!comparable) {
       msg = 'Hubo demasiados errores o palabras sin responder para comparar los dos tipos. Intenta de nuevo.';
     } else if (pct > 5) {
       msg = 'Tardaste un ' + pct.toFixed(1) + ' % más cuando la palabra y la tinta no coincidían. Eso es el efecto Stroop: tu cerebro leyó antes de ver. En el experimento de 1935 la diferencia fue de ' + STROOP_1935 + ' %.';
@@ -290,9 +338,13 @@
       msg = 'Esta vez casi no se notó la interferencia. Suele aparecer con más claridad al repetir la prueba o al responder más rápido.';
     }
     results.querySelector('.test-summary').textContent = msg;
+    if (contextEl) {
+      contextEl.hidden = !comparable;
+      if (comparable) contextEl.textContent = contextText(pct);
+    }
 
     lastResult = { pct: pct, total: total, errors: errors + timeouts };
-    if (con.length && inc.length) {
+    if (comparable) {
       var hist = loadHistory();
       hist.push({ t: Date.now(), pct: Math.round(Math.max(-200, Math.min(300, pct)) * 10) / 10, total: Math.round(total / 100) / 10, errors: errors + timeouts });
       if (hist.length > 10) hist = hist.slice(-10);
@@ -305,14 +357,15 @@
 
   function start() {
     clearAll();
-    trials = buildTrials();
+    phase = 'practice';
+    trials = buildTrials(PRACTICE / 2);
     records = [];
     index = 0;
     intro.hidden = true;
     results.hidden = true;
     play.hidden = false;
+    timer.textContent = '0:00.0';
     renderChoices();
-    startClock();
     if (voiceCheck && voiceCheck.checked && SR) startVoice();
     showTrial();
   }
