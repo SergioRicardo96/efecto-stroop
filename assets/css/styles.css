@@ -247,12 +247,19 @@ p { margin: 0 0 1em; }
 @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
 
 /* Prueba interactiva */
-.test { background: var(--soft); border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 3rem); max-width: 760px; margin-inline: auto; }
+.test { background: var(--soft); color: var(--fg); border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 3rem); max-width: 760px; margin-inline: auto; }
+.section-dark .test .btn { border-color: var(--fg); color: var(--fg); }
+.section-dark .test .btn-primary { background: var(--fg); color: var(--bg); }
+.section-dark .test .btn-primary:hover { background: var(--azul); border-color: var(--azul); color: #fff; }
 .test-top { display: flex; justify-content: space-between; gap: 1rem; font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
 .test-top strong { color: var(--fg); }
 .test-timer strong { font-family: var(--display); font-size: 1.35rem; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
 @media (max-width: 600px) { .test-top { flex-wrap: wrap; } .test-top > span:last-child { width: 100%; } }
-.test-stage { min-height: 200px; display: grid; place-items: center; background: var(--surface); border-radius: 20px; margin-bottom: 1.25rem; padding: 1rem; text-align: center; }
+.test-stage { position: relative; min-height: 200px; display: grid; place-items: center; background: var(--surface); border-radius: 20px; margin-bottom: 1.25rem; padding: 1rem 1rem 1.5rem; text-align: center; overflow: hidden; }
+.trial-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: var(--line); }
+.trial-bar i { display: block; height: 100%; width: 100%; background: var(--verde); transform-origin: left; }
+.trial-bar.is-warning i { background: var(--rojo); }
+.btn-small { padding: .45rem .9rem; font-size: .85rem; border-width: 1.5px; }
 .test-word { font-family: var(--display); font-size: clamp(3rem, 11vw, 6rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.03em; line-height: 1; }
 .test-choices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
 .test-choices button {

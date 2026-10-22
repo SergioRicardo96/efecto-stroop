@@ -9,6 +9,7 @@
     { key: 'amarillo', label: 'Amarillo' }
   ];
   var TRIALS_PER_TYPE = 12;
+  var TRIAL_LIMIT = 3000;
   var STROOP_1935 = 74.3;
 
   var intro = root.querySelector('.test-intro');
@@ -19,10 +20,13 @@
   var feedback = root.querySelector('.test-feedback');
   var counter = root.querySelector('.test-counter');
   var bar = root.querySelector('.progress i');
+  var timer = root.querySelector('.test-timer strong');
+  var trialBar = root.querySelector('.trial-bar');
+  var trialFill = root.querySelector('.trial-bar i');
   var startBtn = root.querySelector('.test-start');
+  var resetBtn = root.querySelector('.test-reset');
   var restartBtns = root.querySelectorAll('.test-restart');
 
-  var timer = root.querySelector('.test-timer strong');
   var trials = [];
   var index = 0;
   var shownAt = 0;
@@ -30,6 +34,27 @@
   var records = [];
   var startedAt = 0;
   var ticker = null;
+  var trialTicker = null;
+  var nextTimer = null;
+
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  function buildTrials() {
+    var list = [];
+    for (var i = 0; i < TRIALS_PER_TYPE; i++) {
+      var c = COLORS[i % COLORS.length];
+      list.push({ word: c, ink: c, congruent: true });
+      var others = COLORS.filter(function (x) { return x.key !== c.key; });
+      list.push({ word: c, ink: others[Math.floor(Math.random() * others.length)], congruent: false });
+    }
+    return shuffle(list);
+  }
 
   function formatTime(ms) {
     var s = ms / 1000;
@@ -52,23 +77,28 @@
     return total;
   }
 
-  function shuffle(arr) {
-    for (var i = arr.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
-    }
-    return arr;
+  function stopTrialClock() {
+    clearInterval(trialTicker);
+    trialTicker = null;
   }
 
-  function buildTrials() {
-    var list = [];
-    for (var i = 0; i < TRIALS_PER_TYPE; i++) {
-      var c = COLORS[i % COLORS.length];
-      list.push({ word: c, ink: c, congruent: true });
-      var others = COLORS.filter(function (x) { return x.key !== c.key; });
-      list.push({ word: c, ink: others[Math.floor(Math.random() * others.length)], congruent: false });
-    }
-    return shuffle(list);
+  function startTrialClock() {
+    stopTrialClock();
+    trialBar.classList.remove('is-warning');
+    trialFill.style.transform = 'scaleX(1)';
+    trialTicker = setInterval(function () {
+      var elapsed = performance.now() - shownAt;
+      var left = Math.max(0, 1 - elapsed / TRIAL_LIMIT);
+      trialFill.style.transform = 'scaleX(' + left + ')';
+      if (left < .34) trialBar.classList.add('is-warning');
+      if (elapsed >= TRIAL_LIMIT) timeout();
+    }, 50);
+  }
+
+  function clearAll() {
+    clearInterval(ticker);
+    stopTrialClock();
+    clearTimeout(nextTimer);
   }
 
   function renderChoices() {
@@ -92,21 +122,39 @@
     feedback.textContent = '';
     locked = false;
     shownAt = performance.now();
+    startTrialClock();
+  }
+
+  function advance(delay) {
+    index++;
+    clearTimeout(nextTimer);
+    nextTimer = setTimeout(function () {
+      if (index < trials.length) showTrial(); else finish();
+    }, delay);
   }
 
   function answer(key) {
     if (locked) return;
     locked = true;
+    stopTrialClock();
     var t = trials[index];
     var rt = performance.now() - shownAt;
     var ok = key === t.ink.key;
-    records.push({ congruent: t.congruent, rt: rt, correct: ok });
+    records.push({ congruent: t.congruent, rt: rt, correct: ok, timeout: false });
     feedback.textContent = ok ? '✓ Correcto' : '✗ La tinta era ' + t.ink.label.toLowerCase();
     feedback.style.color = ok ? 'var(--verde)' : 'var(--rojo)';
-    index++;
-    setTimeout(function () {
-      if (index < trials.length) showTrial(); else finish();
-    }, ok ? 300 : 700);
+    advance(ok ? 300 : 700);
+  }
+
+  function timeout() {
+    if (locked) return;
+    locked = true;
+    stopTrialClock();
+    var t = trials[index];
+    records.push({ congruent: t.congruent, rt: TRIAL_LIMIT, correct: false, timeout: true });
+    feedback.textContent = '⏱ Se acabó el tiempo. La tinta era ' + t.ink.label.toLowerCase();
+    feedback.style.color = 'var(--rojo)';
+    advance(900);
   }
 
   function avg(list) {
@@ -123,7 +171,8 @@
 
     var con = records.filter(function (r) { return r.congruent && r.correct; });
     var inc = records.filter(function (r) { return !r.congruent && r.correct; });
-    var errors = records.filter(function (r) { return !r.correct; }).length;
+    var errors = records.filter(function (r) { return !r.correct && !r.timeout; }).length;
+    var timeouts = records.filter(function (r) { return r.timeout; }).length;
     var avgCon = avg(con);
     var avgInc = avg(inc);
     var diff = avgInc - avgCon;
@@ -134,10 +183,11 @@
     results.querySelector('[data-out="diff"]').textContent = (diff >= 0 ? '+' : '') + Math.round(diff) + ' ms';
     results.querySelector('[data-out="pct"]').textContent = (pct >= 0 ? '+' : '') + pct.toFixed(1) + ' %';
     results.querySelector('[data-out="errors"]').textContent = errors + ' de ' + records.length;
+    results.querySelector('[data-out="timeouts"]').textContent = timeouts + ' de ' + records.length;
 
     var msg;
     if (!con.length || !inc.length) {
-      msg = 'Hubo demasiados errores para comparar los dos tipos de palabra. Intenta de nuevo.';
+      msg = 'Hubo demasiados errores o palabras sin responder para comparar los dos tipos. Intenta de nuevo.';
     } else if (pct > 5) {
       msg = 'Tardaste un ' + pct.toFixed(1) + ' % más cuando la palabra y la tinta no coincidían. Eso es el efecto Stroop: tu cerebro leyó antes de ver. En el experimento de 1935 la diferencia fue de ' + STROOP_1935 + ' %.';
     } else {
@@ -147,6 +197,7 @@
   }
 
   function start() {
+    clearAll();
     trials = buildTrials();
     records = [];
     index = 0;
@@ -159,6 +210,7 @@
   }
 
   startBtn.addEventListener('click', start);
+  resetBtn.addEventListener('click', start);
   restartBtns.forEach(function (b) { b.addEventListener('click', start); });
 
   document.addEventListener('keydown', function (e) {
