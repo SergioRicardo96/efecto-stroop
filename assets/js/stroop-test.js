@@ -10,7 +10,9 @@
   ];
   var TRIALS_PER_TYPE = 12;
   var PRACTICE = 4;
-  var TRIAL_LIMIT = 3000;
+  var TRIAL_LIMIT_BUTTONS = 3000;
+  var TRIAL_LIMIT_VOICE = 5000;
+  var TRIAL_LIMIT = TRIAL_LIMIT_BUTTONS;
   var STROOP_1935 = 74.3;
   var TYPICAL_LOW = 20, TYPICAL_HIGH = 60;
   var HISTORY_KEY = 'stroop-history';
@@ -54,7 +56,8 @@
   var nextTimer = null;
   var rec = null;
   var voiceOn = false;
-  var handledUpTo = 0;
+  var heardTokens = [];
+  var consumed = 0;
   var lastResult = null;
 
   function shuffle(arr) {
@@ -121,33 +124,71 @@
   }
 
   /* Modo voz */
-  function detectColor(text) {
-    var t = text.toLowerCase();
-    if (/roj/.test(t)) return 'rojo';
-    if (/azul/.test(t)) return 'azul';
-    if (/verd/.test(t)) return 'verde';
-    if (/amarill/.test(t)) return 'amarillo';
-    return null;
+  var COLOR_PATTERNS = [
+    { key: 'rojo', re: /roj[oa]s?|rogo|rollo/g },
+    { key: 'azul', re: /azul|asul|azu\b/g },
+    { key: 'verde', re: /verd[e]?s?|berde/g },
+    { key: 'amarillo', re: /amarill[oa]s?|amarilo|marillo/g }
+  ];
+
+  function colorTokens(text) {
+    var t = text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    var found = [];
+    COLOR_PATTERNS.forEach(function (p) {
+      var m;
+      p.re.lastIndex = 0;
+      while ((m = p.re.exec(t)) !== null) found.push({ at: m.index, key: p.key });
+    });
+    found.sort(function (a, b) { return a.at - b.at; });
+    return found.map(function (f) { return f.key; });
+  }
+
+  function tokensFromResults(results) {
+    var tokens = [];
+    for (var i = 0; i < results.length; i++) {
+      var best = null;
+      for (var a = 0; a < results[i].length; a++) {
+        var tk = colorTokens(results[i][a].transcript);
+        if (tk.length && (!best || tk.length > best.length)) best = tk;
+      }
+      if (best) tokens = tokens.concat(best);
+    }
+    return tokens;
+  }
+
+  function showHeard(text) {
+    if (!voiceStatus) return;
+    voiceStatus.hidden = false;
+    voiceStatus.innerHTML = '🎤 Escuchando. ' + (text ? 'Entendí: <strong>' + text + '</strong>' : 'Di el color de la tinta en voz alta.');
   }
 
   function startVoice() {
     if (!SR) return;
     stopVoice();
     voiceOn = true;
-    handledUpTo = 0;
+    heardTokens = [];
+    consumed = 0;
     rec = new SR();
     rec.lang = 'es-MX';
     rec.continuous = true;
     rec.interimResults = true;
+    rec.maxAlternatives = 3;
     rec.onresult = function (e) {
-      for (var i = e.resultIndex; i < e.results.length; i++) {
-        if (i < handledUpTo) continue;
-        var key = detectColor(e.results[i][0].transcript);
-        if (key) { handledUpTo = i + 1; answer(key); break; }
+      var last = e.results[e.results.length - 1];
+      showHeard(last && last[0] ? last[0].transcript.trim() : '');
+      heardTokens = tokensFromResults(e.results);
+      while (consumed < heardTokens.length) {
+        var key = heardTokens[consumed];
+        consumed++;
+        if (answer(key)) break;
       }
     };
     rec.onend = function () {
-      if (voiceOn && !play.hidden) { handledUpTo = 0; try { rec.start(); } catch (err) {} }
+      if (voiceOn && !play.hidden) {
+        heardTokens = [];
+        consumed = 0;
+        try { rec.start(); } catch (err) {}
+      }
     };
     rec.onerror = function (ev) {
       if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
@@ -157,8 +198,7 @@
     };
     try {
       rec.start();
-      voiceStatus.hidden = false;
-      voiceStatus.textContent = '🎤 Escuchando: di el color de la tinta en voz alta.';
+      showHeard('');
     } catch (err) {
       voiceStatus.hidden = false;
       voiceStatus.textContent = 'No se pudo iniciar el micrófono. Responde con los botones.';
@@ -203,6 +243,7 @@
     feedback.textContent = '';
     locked = false;
     shownAt = performance.now();
+    consumed = heardTokens.length;
     startTrialClock();
   }
 
@@ -240,7 +281,7 @@
   }
 
   function answer(key) {
-    if (locked || play.hidden) return;
+    if (locked || play.hidden) return false;
     locked = true;
     stopTrialClock();
     var t = trials[index];
@@ -250,6 +291,7 @@
     feedback.textContent = ok ? '✓ Correcto' : '✗ La tinta era ' + t.ink.label.toLowerCase();
     feedback.style.color = ok ? 'var(--verde)' : 'var(--rojo)';
     advance(ok ? 300 : 700);
+    return true;
   }
 
   function timeout() {
@@ -366,7 +408,9 @@
     play.hidden = false;
     timer.textContent = '0:00.0';
     renderChoices();
-    if (voiceCheck && voiceCheck.checked && SR) startVoice();
+    var useVoice = !!(voiceCheck && voiceCheck.checked && SR);
+    TRIAL_LIMIT = useVoice ? TRIAL_LIMIT_VOICE : TRIAL_LIMIT_BUTTONS;
+    if (useVoice) startVoice();
     showTrial();
   }
 
