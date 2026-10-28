@@ -4,7 +4,7 @@ Sitio estático (HTML, CSS y JavaScript sin dependencias) para el proyecto acad�
 
 ## Estructura
 
-Una sola página (`index.html`) con ocho secciones y menú de anclas:
+Una sola página (`index.html`) con siete secciones y menú de anclas:
 
 | Ancla | Sección |
 | --- | --- |
@@ -15,7 +15,6 @@ Una sola página (`index.html`) con ocho secciones y menú de anclas:
 | `#textos` | Textos |
 | `#sitios` | Sitios de interés |
 | `#animacion` | Animación |
-| `#espacio` | Diseño de espacio |
 
 ## Notas
 
@@ -36,4 +35,4 @@ Luego abre http://localhost:8080.
 - Reel y fotos del equipo (Inicio y Nosotros).
 - Historia de Yuridia Stefani (Nosotros).
 - Lista de documentales y películas (Videos).
-- Animación y diseño de espacio.
+- Animación.
