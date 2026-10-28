@@ -33,5 +33,3 @@ Luego abre http://localhost:8080.
 ## Pendientes de contenido
 
 - Reel y fotos del equipo (Inicio y Nosotros).
-- Historia de Yuridia Stefani (Nosotros).
-- Lista de documentales y películas (Videos).
