@@ -277,6 +277,16 @@ p { margin: 0 0 1em; }
 .video-embed { position: relative; aspect-ratio: 16 / 9; background: #000; }
 .video-embed iframe, .video-embed video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
 .anim { max-width: 960px; margin-inline: auto; }
+.play-overlay {
+  position: absolute; z-index: 2; left: 50%; top: 50%; width: 96px; height: 96px; margin: -48px 0 0 -48px;
+  border-radius: 50%; border: 0; background: #fff; color: #0e0e11; cursor: pointer; display: grid; place-items: center;
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,.7); transition: transform .15s, background .15s;
+}
+.play-overlay svg { width: 44px; height: 44px; fill: currentColor; margin-left: 6px; }
+.play-overlay:hover { transform: scale(1.08); background: var(--amarillo); }
+.video-embed.is-playing .play-overlay { display: none; }
+.video-embed.is-playing video { cursor: default; }
+.video-embed video { cursor: pointer; }
 .section-dark .anim { background: rgba(255,255,255,.06); }
 .section-dark .anim figcaption { color: rgba(255,255,255,.65); }
 .team-media { display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem; align-items: stretch; }

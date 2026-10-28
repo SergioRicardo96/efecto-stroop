@@ -133,6 +133,16 @@
     });
   });
 
+  document.querySelectorAll('.video-embed video').forEach(function (video) {
+    var box = video.parentNode;
+    var overlay = box.querySelector('.play-overlay');
+    var sync = function () { box.classList.toggle('is-playing', !video.paused && !video.ended); };
+    ['play', 'pause', 'ended'].forEach(function (ev) { video.addEventListener(ev, sync); });
+    if (overlay) overlay.addEventListener('click', function () { video.play(); });
+    video.addEventListener('click', function () { if (video.paused) video.play(); });
+    sync();
+  });
+
   var targets = document.querySelectorAll('.section-head, .card, .tile, .figure, .board, .stat, .test, .placeholder, .poem, .letter, .ref');
   if ('IntersectionObserver' in window && !reduced) {
     var io = new IntersectionObserver(function (entries) {
