@@ -32,4 +32,4 @@ Luego abre http://localhost:8080.
 
 ## Pendientes de contenido
 
-- Reel y fotos del equipo (Inicio y Nosotros).
+- Reel de presentación (Inicio).
