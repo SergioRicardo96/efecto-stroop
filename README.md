@@ -35,4 +35,3 @@ Luego abre http://localhost:8080.
 - Reel y fotos del equipo (Inicio y Nosotros).
 - Historia de Yuridia Stefani (Nosotros).
 - Lista de documentales y películas (Videos).
-- Animación.
