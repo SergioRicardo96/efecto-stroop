@@ -224,8 +224,8 @@ p { margin: 0 0 1em; }
 
 /* Personas */
 .person { display: flex; flex-direction: column; gap: .9rem; }
-.avatar { width: 76px; height: 76px; border-radius: 22px; display: grid; place-items: center; color: #fff; font-family: var(--display); font-weight: 800; font-size: 1.4rem; overflow: hidden; }
-.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar { width: 104px; height: 104px; border-radius: 28px; display: grid; place-items: center; color: #fff; font-family: var(--display); font-weight: 800; font-size: 1.4rem; overflow: hidden; box-shadow: 0 0 0 3px var(--card-ink, var(--line)); }
+.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .person h3 { margin: 0; font-size: 1.2rem; }
 .person .role { font-size: .9rem; color: var(--muted); margin-bottom: .5rem; }
 
