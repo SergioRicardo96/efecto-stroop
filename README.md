@@ -21,7 +21,7 @@ Una sola página (`index.html`) con siete secciones y menú de anclas:
 - Las tipografías están en `assets/fonts` (Plus Jakarta Sans y Rubik como fuentes variables), así que el sitio se ve igual sin internet. Solo los videos de YouTube y TikTok necesitan conexión.
 - Las etiquetas Open Graph apuntan a `https://sergioricardo96.github.io/efecto-stroop/`; si el sitio se publica en otra dirección hay que cambiar `og:url` y `og:image` en `index.html`.
 - La animación se recomprimió con ffmpeg (H.264, CRF 25, 1280 px) para pesar 10 MB; el original de 96 MB no está en el repositorio.
-- El contador de visitas del pie usa hits.sh (sin registro): cada carga de la página suma una visita a la clave `sergioricardo96.github.io/efecto-stroop`. Necesita conexión; sin ella solo se oculta la cifra.
+- Las estadísticas de visitas van con GoatCounter (sitio `efectostroop`): el script `gc.zgo.at/count.js` registra cada vista y el pie muestra hoy, semana y total leyendo `efectostroop.goatcounter.com/counter/TOTAL.json`. Para que esas cifras aparezcan hay que activar en GoatCounter la opción "Allow adding visitor counts on your website"; el panel completo (países, dispositivos, referidos) está en https://efectostroop.goatcounter.com. GoatCounter no cuenta visitas desde localhost.
 - El logo (ojo con iris de cuatro tintas) está en `assets/img/icon.svg` y en PNG de 32, 180 y 512 px; la imagen para compartir es `assets/img/og.png`.
 
 ## Ver en local
