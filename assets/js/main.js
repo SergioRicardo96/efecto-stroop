@@ -145,7 +145,7 @@
 
   var gc = document.querySelector('[data-gc]');
   if (gc && window.fetch) {
-    var base = gc.getAttribute('data-gc') + '/counter/TOTAL.json';
+    var base = gc.getAttribute('data-gc') + '/counter/' + encodeURIComponent('/') + '.json';
     var iso = function (d) { return d.toISOString().slice(0, 10); };
     var today = new Date();
     var week = new Date(today.getTime() - 6 * 86400000);
