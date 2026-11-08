@@ -24,14 +24,7 @@ Una sola página (`index.html`) con siete secciones y menú de anclas:
 - Las estadísticas de visitas van con GoatCounter (sitio `efectostroop`): el script `gc.zgo.at/count.js` registra cada vista y el pie muestra hoy, semana y total leyendo `efectostroop.goatcounter.com/counter/TOTAL.json`. Para que esas cifras aparezcan hay que activar en GoatCounter la opción "Allow adding visitor counts on your website"; el panel completo (países, dispositivos, referidos) está en https://efectostroop.goatcounter.com. GoatCounter no cuenta visitas desde localhost.
 - El logo (ojo con iris de cuatro tintas) está en `assets/img/icon.svg` y en PNG de 32, 180 y 512 px; la imagen para compartir es `assets/img/og.png`.
 
-## Ver en local
+## Ver el sitio
 
-```bash
-python -m http.server 8080
-```
-
-Luego abre http://localhost:8080.
-
-## Pendientes de contenido
-
-- Reel de presentación (Inicio).
+- En línea: https://efectostroop.online
+- En local: abre `index.html` en el navegador. Los videos de YouTube y las estadísticas de visitas solo funcionan en la versión publicada.
