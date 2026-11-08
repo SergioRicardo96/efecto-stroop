@@ -161,7 +161,12 @@
       gc.querySelector('[data-gc-week]').textContent = w.toLocaleString('es-MX');
       gc.querySelector('[data-gc-today]').textContent = t.toLocaleString('es-MX');
       gc.querySelector('.visits-nums').hidden = false;
-    }).catch(function () {});
+    }).catch(function () {
+      var note = document.createElement('span');
+      note.className = 'visits-blocked';
+      note.textContent = 'Tu navegador bloquea el contador de visitas ·';
+      gc.insertBefore(note, gc.firstChild);
+    });
   }
 
   var targets = document.querySelectorAll('.section-head, .card, .tile, .figure, .board, .stat, .test, .placeholder, .poem, .letter, .ref');
