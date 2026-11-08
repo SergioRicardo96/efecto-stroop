@@ -153,10 +153,13 @@
     var get = function (qs) {
       return fetch(base + qs, { mode: 'cors' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
     };
-    Promise.all([get(''), get('?start=' + iso(week)), get('?start=' + iso(today))]).then(function (res) {
-      gc.querySelector('[data-gc-total]').textContent = num(res[0].count).toLocaleString('es-MX');
-      gc.querySelector('[data-gc-week]').textContent = num(res[1].count).toLocaleString('es-MX');
-      gc.querySelector('[data-gc-today]').textContent = num(res[2].count).toLocaleString('es-MX');
+    Promise.all([get('?start=2026-10-01'), get('?start=' + iso(week)), get('?start=' + iso(today))]).then(function (res) {
+      var t = num(res[2].count);
+      var w = Math.max(num(res[1].count), t);
+      var all = Math.max(num(res[0].count), w);
+      gc.querySelector('[data-gc-total]').textContent = all.toLocaleString('es-MX');
+      gc.querySelector('[data-gc-week]').textContent = w.toLocaleString('es-MX');
+      gc.querySelector('[data-gc-today]').textContent = t.toLocaleString('es-MX');
       gc.querySelector('.visits-nums').hidden = false;
     }).catch(function () {});
   }
