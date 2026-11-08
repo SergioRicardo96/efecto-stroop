@@ -143,32 +143,6 @@
     sync();
   });
 
-  var gc = document.querySelector('[data-gc]');
-  if (gc && window.fetch) {
-    var base = gc.getAttribute('data-gc') + '/counter/' + encodeURIComponent('/') + '.json';
-    var iso = function (d) { return d.toISOString().slice(0, 10); };
-    var today = new Date();
-    var week = new Date(today.getTime() - 6 * 86400000);
-    var num = function (v) { return parseInt(String(v).replace(/[^\d]/g, ''), 10) || 0; };
-    var get = function (qs) {
-      return fetch(base + qs, { mode: 'cors' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
-    };
-    Promise.all([get('?start=2026-10-01'), get('?start=' + iso(week)), get('?start=' + iso(today))]).then(function (res) {
-      var t = num(res[2].count);
-      var w = Math.max(num(res[1].count), t);
-      var all = Math.max(num(res[0].count), w);
-      gc.querySelector('[data-gc-total]').textContent = all.toLocaleString('es-MX');
-      gc.querySelector('[data-gc-week]').textContent = w.toLocaleString('es-MX');
-      gc.querySelector('[data-gc-today]').textContent = t.toLocaleString('es-MX');
-      gc.querySelector('.visits-nums').hidden = false;
-    }).catch(function () {
-      var note = document.createElement('span');
-      note.className = 'visits-blocked';
-      note.textContent = 'Tu navegador bloquea el contador de visitas ·';
-      gc.insertBefore(note, gc.firstChild);
-    });
-  }
-
   var targets = document.querySelectorAll('.section-head, .card, .tile, .figure, .board, .stat, .test, .placeholder, .poem, .letter, .ref');
   if ('IntersectionObserver' in window && !reduced) {
     var io = new IntersectionObserver(function (entries) {
