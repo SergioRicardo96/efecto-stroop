@@ -325,8 +325,11 @@ p { margin: 0 0 1em; }
 .site-footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem; }
 .site-footer a { color: #fff; }
 .footer-side { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
-.visits { display: inline-flex; align-items: center; gap: .6rem; margin: 0; font-size: .9rem; }
+.visits { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: .6rem; margin: 0; font-size: .9rem; }
 .visits img { display: block; height: 20px; border-radius: 4px; }
+.visits .views::after { content: " ·"; }
+.visits .views { display: inline-flex; align-items: center; gap: .4rem; }
+@media (max-width: 600px) { .visits { justify-content: flex-start; } }
 @media (max-width: 600px) { .footer-side { align-items: flex-start; } }
 .footer-mark { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 7vw, 4.5rem); line-height: 1; letter-spacing: -.03em; text-transform: uppercase; color: #fff; display: block; margin-bottom: .5rem; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--dark); color: #fff; padding: .5rem 1rem; z-index: 100; }
